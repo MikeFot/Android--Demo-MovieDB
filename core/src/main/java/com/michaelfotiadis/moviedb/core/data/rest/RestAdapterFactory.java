@@ -1,58 +1,51 @@
 package com.michaelfotiadis.moviedb.core.data.rest;
 
 import com.google.gson.Gson;
+import com.michaelfotiadis.moviedb.core.DemoCore;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit.RequestInterceptor;
+import retrofit.RestAdapter;
+import retrofit.android.AndroidLog;
+import retrofit.converter.GsonConverter;
 
 /**
  *
  */
 /*package*/ final class RestAdapterFactory {
+    private static final RestAdapter.LogLevel LOG_LEVEL = RestAdapter.LogLevel.BASIC;
     private static final String LOG_PREFIX = "^^";
 
     private RestAdapterFactory() {
     }
 
-    public static Retrofit createDefault(final String endpoint,
-                                         final Gson gson) {
+    public static RestAdapter createDefault(final String serverEndpoint,
+                                            final Gson gson) {
+        final RestAdapter.Builder restAdapterBuilder = new RestAdapter.Builder();
+        restAdapterBuilder.setEndpoint(serverEndpoint);
+        restAdapterBuilder.setConverter(new GsonConverter(gson));
 
-        final Retrofit.Builder builder = new Retrofit.Builder();
+        // instantiate a request interceptor
+        final RequestInterceptor requestInterceptor = new InternalRequestInterceptor();
+        restAdapterBuilder.setRequestInterceptor(requestInterceptor);
 
-        builder.baseUrl(endpoint);
-
-        if (gson != null) {
-            builder.addConverterFactory(GsonConverterFactory.create(gson));
-        } else {
-            builder.addConverterFactory(GsonConverterFactory.create());
+        if (DemoCore.isDebugEnabled()) {
+            restAdapterBuilder.setLogLevel(LOG_LEVEL).setLog(new AndroidLog(LOG_PREFIX + "Retrofit"));
         }
 
-        builder.client(getClient(new Interceptor() {
-            @Override
-            public Response intercept(final Chain chain) throws IOException {
-                // TODO set up the interceptor
-                return null;
-            }
-        }));
-
-        return builder.build();
+        return restAdapterBuilder.build();
     }
 
+    public static RestAdapter createGeneric(final String endpoint, final Gson gson) {
+        final RestAdapter.Builder restAdapterBuilder = new RestAdapter.Builder();
+        restAdapterBuilder.setConverter(new GsonConverter(gson));
+        restAdapterBuilder.setEndpoint(endpoint);
+        return restAdapterBuilder.build();
+    }
 
-    private static OkHttpClient getClient(final okhttp3.Interceptor interceptor) {
-
-        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        if (interceptor != null) {
-            builder.addInterceptor(interceptor);
+    private static class InternalRequestInterceptor implements RequestInterceptor {
+        @Override
+        public void intercept(final RequestFacade request) {
+            request.addHeader("Content-Type", "application/json");
         }
-
-        return builder.build();
     }
-
 }

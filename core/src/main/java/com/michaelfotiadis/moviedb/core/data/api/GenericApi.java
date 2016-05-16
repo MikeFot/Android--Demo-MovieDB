@@ -1,9 +1,10 @@
 package com.michaelfotiadis.moviedb.core.data.api;
 
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+
+import retrofit.Callback;
+import retrofit.client.Response;
+import retrofit.http.GET;
+import retrofit.http.Path;
 
 /**
  *
@@ -11,6 +12,6 @@ import retrofit2.http.Path;
 public interface GenericApi {
 
     @GET("/{endpoint}")
-    void get(@Path(value = "endpoint", encoded = false) String endpoint, Callback<Response> callback);
+    void get(@Path(value = "endpoint", encode = false) String endpoint, Callback<Response> callback);
 
 }
