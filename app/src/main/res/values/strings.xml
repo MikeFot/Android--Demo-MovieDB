@@ -1,0 +1,22 @@
+<resources>
+
+    <string-array name="error_quote_array">
+        <item>\"…Bond. James Bond\"</item>
+        <item>\"Of all the gin joints in all the towns in all the world, she walks into mine.\"</item>
+        <item>\"I\'ll be back.\"</item>
+        <item>\"All those moments will be lost in time… like tears in rain.\"</item>
+        <item>\"You\'re gonna need a bigger boat.\"</item>
+        <item>\"To infinity… and beyond.\"</item>
+    </string-array>
+
+    <string-array name="error_quote_author_array">
+        <item>-Sean Connery, Dr. No (1962)</item>
+        <item>-Humphrey Bogart, Casablanca (1942)</item>
+        <item>-Arnold Schwarzenegger, The Terminator (1984)</item>
+        <item>-Rutger Hauer, Blade Runner (1982)</item>
+        <item>-Roy Scheider, Jaws (1975)</item>
+        <item>-Tim Allen, Toy Story (1995)</item>
+    </string-array>
+
+    <string name="button_label_error_try_again">Try again</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="App.PopupMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <!--
+        There is a bug in AppCompat where the normal background is not tinted for
+        programatically created popupMenus. So we are forcing it here.
+        -->
+        <item name="android:popupBackground">@color/window_background_alt</item>
+    </style>
+</resources>

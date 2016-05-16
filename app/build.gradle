@@ -1,0 +1,115 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.21.6'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
+final int versionMajor = 1
+final int versionMinor = 0
+final int versionPatch = 0
+final String semanticVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
+
+
+final int targetSdk = rootProject.targetSdkVersion;
+final int minSdkRed = rootProject.minSdkVersion;
+
+final String appCompatLibVersion = "23.3.0"
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.michaelfotiadis.moviedb"
+
+        compileSdkVersion rootProject.compileSdkVersion
+        buildToolsVersion rootProject.buildToolsVersion
+
+        packagingOptions.excludes = getDefaultExcludes();
+
+        minSdkVersion minSdkRed
+        targetSdkVersion targetSdk
+
+        versionCode computeVersionCode()
+        versionName semanticVersion
+
+        resValue("string", "api_key", "0a08e38b874d0aa2d426ffc04357069d")
+
+        proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                'proguard/proguard-gson.pro'
+
+    }
+
+    productFlavors {
+        prod {
+            applicationId "com.michaelfotiadis.moviedb"
+            resValue("string", "app_name", "Movie DB Demo")
+            buildConfigField "Boolean", "STRICT_MODE", "false"
+        }
+        dev {
+            applicationId "com.michaelfotiadis.moviedb.dev"
+            resValue("string", "app_name", "Movie DB Demo Dev")
+            buildConfigField "Boolean", "STRICT_MODE", "true"
+        }
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled true
+            debuggable false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "Boolean", "DEV_MODE", "false"
+
+        }
+
+        debug {
+            testCoverageEnabled true
+            debuggable true
+
+            buildConfigField "Boolean", "DEV_MODE", "true"
+        }
+
+        applicationVariants.all {
+            final variant ->
+            variant.outputs.each { final output ->
+                annotateApkFilename(variant, output);
+            }
+        }
+
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':core')
+
+    compile 'com.android.support:support-v4:$appCompatLibVersion'
+    compile "com.android.support:appcompat-v7:$appCompatLibVersion"
+    compile "com.android.support:design:$appCompatLibVersion"
+    compile "com.android.support:cardview-v7:$appCompatLibVersion"
+    compile "com.android.support:recyclerview-v7:$appCompatLibVersion"
+
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    testCompile 'junit:junit:4.12'
+
+}
