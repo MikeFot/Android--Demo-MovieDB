@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MovieDb.TabLayout">
+        <item name="tabIndicatorColor">@color/primary_light</item>
+        <item name="tabTextColor">@color/primary_light</item>
+        <item name="tabSelectedTextColor">@color/primary_light</item>
+    </style>
+
+    <style name="MovieDb.TabLayout.Scrollable" parent="MovieDb.TabLayout">
+        <item name="tabMode">scrollable</item>
+    </style>
+
+    <style name="MovieDb.TabLayout.Fixed" parent="MovieDb.TabLayout">
+        <item name="tabMode">fixed</item>
+    </style>
+</resources>

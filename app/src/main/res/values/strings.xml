@@ -19,4 +19,7 @@
     </string-array>
 
     <string name="button_label_error_try_again">Try again</string>
+    <string name="tab_title_movie_feed">Movies</string>
+    <string name="tab_title_people">People</string>
+    <string name="tab_title_tv_series">TV Series</string>
 </resources>
