@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.michaelfotiadis.moviedb.common.exceptions.CoreException;
-import com.michaelfotiadis.moviedb.core.data.DataProvider;
+import com.michaelfotiadis.moviedb.core.data.loader.DataProvider;
 import com.michaelfotiadis.moviedb.core.utils.CoreLog;
 
 /**
@@ -30,10 +30,6 @@ public final class DemoCore {
      **/
     private String mInstallationId;
 
-    /**
-     * Api Key for network calls
-     */
-    private String mApiKey;
     /**
      * Endpoint for network calls
      */
@@ -69,8 +65,6 @@ public final class DemoCore {
         if (TextUtils.isEmpty(apiKey)) {
             throw new CoreException("Api Key cannot be empty");
         }
-        getInstance().mApiKey = apiKey;
-
 
         if (TextUtils.isEmpty(endpoint)) {
             throw new CoreException("Endpoint cannot be empty");
@@ -84,13 +78,9 @@ public final class DemoCore {
         // generate an installation id
         getInstance().mInstallationId = CoreInstaller.generateInstallationId(context);
 
-        getInstance().mDataProvider = new DataProvider(context);
+        getInstance().mDataProvider = new DataProvider(context, apiKey);
 
         CoreLog.d("Core Initialised with installation id " + getInstance().getInstallationId());
-    }
-
-    public static String getApiKey() {
-        return getInstance().mApiKey;
     }
 
     public boolean isStrictModeEnabled() {
