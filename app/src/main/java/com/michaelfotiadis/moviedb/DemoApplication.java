@@ -24,7 +24,11 @@ public class DemoApplication extends Application {
         /**
          * Initialise the core module using the api key
          */
-        DemoCore.init(this, getString(R.string.api_key), BuildConfig.DEV_MODE, BuildConfig.STRICT_MODE);
+        DemoCore.init(this,
+                getString(R.string.api_key),
+                BuildConfig.ENDPOINT,
+                BuildConfig.DEV_MODE,
+                BuildConfig.STRICT_MODE);
 
     }
 

@@ -34,6 +34,10 @@ public final class DemoCore {
      * Api Key for network calls
      */
     private String mApiKey;
+    /**
+     * Endpoint for network calls
+     */
+    private String mEndpoint;
 
     private DemoCore() {
         // DO NOT INSTANTIATE
@@ -53,23 +57,29 @@ public final class DemoCore {
 
     public static synchronized void init(final Context applicationContext,
                                          final String apiKey,
+                                         final String endpoint,
                                          final boolean isDebug,
                                          final boolean isStrict) {
 
         if (applicationContext == null) {
             throw new NullPointerException("Null application context");
         }
+        final Context context = applicationContext.getApplicationContext();
 
         if (TextUtils.isEmpty(apiKey)) {
             throw new CoreException("Api Key cannot be empty");
         }
+        getInstance().mApiKey = apiKey;
 
 
-        final Context context = applicationContext.getApplicationContext();
+        if (TextUtils.isEmpty(endpoint)) {
+            throw new CoreException("Endpoint cannot be empty");
+        }
+        getInstance().mEndpoint = endpoint;
+
+
         getInstance().mIsDebugEnabled = isDebug;
         getInstance().mIsStrictModeEnabled = isStrict;
-
-        getInstance().mApiKey = apiKey;
 
         // generate an installation id
         getInstance().mInstallationId = CoreInstaller.generateInstallationId(context);
@@ -79,8 +89,8 @@ public final class DemoCore {
         CoreLog.d("Core Initialised with installation id " + getInstance().getInstallationId());
     }
 
-    public String getApiKey() {
-        return mApiKey;
+    public static String getApiKey() {
+        return getInstance().mApiKey;
     }
 
     public boolean isStrictModeEnabled() {
@@ -93,6 +103,10 @@ public final class DemoCore {
         } else {
             throw new IllegalStateException("Installation ID requested before initialising the SDK.");
         }
+    }
+
+    public static String getEndpoint() {
+        return getInstance().mEndpoint;
     }
 
     public static boolean isDebugEnabled() {

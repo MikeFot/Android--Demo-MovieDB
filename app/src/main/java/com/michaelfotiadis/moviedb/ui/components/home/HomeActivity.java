@@ -1,9 +1,10 @@
-package com.michaelfotiadis.moviedb;
+package com.michaelfotiadis.moviedb.ui.components.home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.crashlytics.android.Crashlytics;
+import com.michaelfotiadis.moviedb.R;
 
 import io.fabric.sdk.android.Fabric;
 

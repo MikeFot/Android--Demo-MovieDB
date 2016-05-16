@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MovieDb.AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity android:name=".ui.components.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

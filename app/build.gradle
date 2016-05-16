@@ -26,6 +26,10 @@ final int minSdkRed = rootProject.minSdkVersion;
 
 final String appCompatLibVersion = "23.3.0"
 
+def STRING = "String"
+def BOOLEAN = "boolean"
+def INT = "int"
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -55,12 +59,20 @@ android {
         prod {
             applicationId "com.michaelfotiadis.moviedb"
             resValue("string", "app_name", "Movie DB Demo")
-            buildConfigField "Boolean", "STRICT_MODE", "false"
+            buildConfigField BOOLEAN, "STRICT_MODE", "false"
+            buildConfigField STRING, "ENDPOINT", '"https://api.themoviedb.org/3"'
         }
         dev {
             applicationId "com.michaelfotiadis.moviedb.dev"
             resValue("string", "app_name", "Movie DB Demo Dev")
-            buildConfigField "Boolean", "STRICT_MODE", "true"
+            buildConfigField BOOLEAN, "STRICT_MODE", "true"
+            buildConfigField STRING, "ENDPOINT", '"http://private-anon-ebfdf98e7-themoviedb.apiary-proxy.com/3"'
+        }
+        mock {
+            applicationId "com.michaelfotiadis.moviedb.mock"
+            resValue("string", "app_name", "Movie DB Demo Dev")
+            buildConfigField BOOLEAN, "STRICT_MODE", "false"
+            buildConfigField STRING, "ENDPOINT", '"http://private-anon-ebfdf98e7-themoviedb.apiary-mock.com/3"'
         }
     }
 
