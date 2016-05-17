@@ -2,6 +2,7 @@ package com.michaelfotiadis.moviedb.core.data.rest;
 
 import com.google.gson.Gson;
 import com.michaelfotiadis.moviedb.core.DemoCore;
+import com.michaelfotiadis.moviedb.core.data.api.GetConfigurationApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetMoviesApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetPeopleApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetTvSeriesApi;
@@ -76,5 +77,11 @@ public final class CoreRestClientImpl implements CoreRestClient {
     public synchronized GetTvSeriesApi getTvSeriesApi() {
         validateApiStore();
         return mApiStore.getTvSeriesApi();
+    }
+
+    @Override
+    public synchronized GetConfigurationApi getConfigurationApi() {
+        validateApiStore();
+        return mApiStore.getConfigurationApi();
     }
 }

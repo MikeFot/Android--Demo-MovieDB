@@ -1,6 +1,7 @@
 package com.michaelfotiadis.moviedb.core.data.loader;
 
 
+import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
@@ -90,6 +91,31 @@ public class LoaderNetwork {
 
                 final ValidationResult validationResult = new ValidatorProcessorImpl()
                         .getValidator(TvSeriesContainer.class)
+                        .validate(result);
+                if (validationResult.isValid()) {
+                    masterCallback.onSuccess(CommonDeliverable.from(result));
+                } else {
+                    masterCallback.onFailure(validationResult.getError());
+                }
+
+            }
+
+            @Override
+            public void failure(final RetrofitError error) {
+                masterCallback.onFailure(LoaderUtils.getErrorFromRetrofit(error));
+            }
+        });
+
+    }
+
+    protected void getConfiguration(final CommonCallback<Configuration> masterCallback) {
+
+        mRequestForwarder.forwardGetConfiguration(new Callback<Configuration>() {
+            @Override
+            public void success(final Configuration result, final Response response) {
+
+                final ValidationResult validationResult = new ValidatorProcessorImpl()
+                        .getValidator(Configuration.class)
                         .validate(result);
                 if (validationResult.isValid()) {
                     masterCallback.onSuccess(CommonDeliverable.from(result));

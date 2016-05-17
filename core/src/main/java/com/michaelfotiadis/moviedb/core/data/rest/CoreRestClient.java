@@ -1,5 +1,6 @@
 package com.michaelfotiadis.moviedb.core.data.rest;
 
+import com.michaelfotiadis.moviedb.core.data.api.GetConfigurationApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetMoviesApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetPeopleApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetTvSeriesApi;
@@ -16,4 +17,5 @@ public interface CoreRestClient {
 
     GetTvSeriesApi getTvSeriesApi();
 
+    GetConfigurationApi getConfigurationApi();
 }

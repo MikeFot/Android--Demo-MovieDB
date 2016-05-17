@@ -1,6 +1,7 @@
 package com.michaelfotiadis.moviedb.core.data.rest;
 
 import com.google.gson.Gson;
+import com.michaelfotiadis.moviedb.core.data.api.GetConfigurationApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetMoviesApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetPeopleApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetTvSeriesApi;
@@ -17,6 +18,7 @@ import retrofit.RestAdapter;
     private final GetMoviesApi mMoviesApi;
     private final GetPeopleApi mPeopleApi;
     private final GetTvSeriesApi mTvSeriesApi;
+    private final GetConfigurationApi mConfigurationApi;
 
     public CoreApiStore(final String serverEndpoint, final Gson gson) {
         CoreLog.d("New Retrofit API. Endpoint is " + serverEndpoint);
@@ -27,6 +29,7 @@ import retrofit.RestAdapter;
         mMoviesApi = adapter.create(GetMoviesApi.class);
         mPeopleApi = adapter.create(GetPeopleApi.class);
         mTvSeriesApi = adapter.create(GetTvSeriesApi.class);
+        mConfigurationApi = adapter.create(GetConfigurationApi.class);
     }
 
 
@@ -44,5 +47,9 @@ import retrofit.RestAdapter;
 
     public GetTvSeriesApi getTvSeriesApi() {
         return mTvSeriesApi;
+    }
+
+    public GetConfigurationApi getConfigurationApi() {
+        return mConfigurationApi;
     }
 }

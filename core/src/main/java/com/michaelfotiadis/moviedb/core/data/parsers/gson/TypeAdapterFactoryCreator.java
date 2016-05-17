@@ -1,5 +1,9 @@
 package com.michaelfotiadis.moviedb.core.data.parsers.gson;
 
+import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
+import com.michaelfotiadis.moviedb.common.models.configuration.ConfigurationImpl;
+import com.michaelfotiadis.moviedb.common.models.configuration.Images;
+import com.michaelfotiadis.moviedb.common.models.configuration.ImagesImpl;
 import com.michaelfotiadis.moviedb.common.models.guest.GuestSession;
 import com.michaelfotiadis.moviedb.common.models.guest.GuestSessionImpl;
 import com.michaelfotiadis.moviedb.common.models.movies.Movie;
@@ -39,7 +43,8 @@ import java.util.Set;
         adapters.add(create(PeopleContainer.class, PeopleContainerImpl.class));
         adapters.add(create(TvSeries.class, TvSeriesImpl.class));
         adapters.add(create(TvSeriesContainer.class, TvSeriesContainerImpl.class));
-
+        adapters.add(create(Images.class, ImagesImpl.class));
+        adapters.add(create(Configuration.class, ConfigurationImpl.class));
 
     }
 
