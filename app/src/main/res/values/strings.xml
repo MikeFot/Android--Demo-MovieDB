@@ -29,4 +29,5 @@
     <string name="friendly_error_no_data">No data yet!</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis dolor velit. Praesent nec eleifend leo, nec rhoncus mauris. Fusce semper, lacus in finibus dignissim, ipsum nibh sodales eros, ut venenatis libero quam sed turpis. Mauris iaculis eros augue, quis placerat elit dapibus molestie. Donec porttitor ultrices nulla, eu tincidunt purus venenatis in. Integer vel lorem neque. Cras mattis in lorem vel placerat. Duis mi dui, vulputate at suscipit sit amet, sagittis sit amet nulla. Nullam gravida porttitor ante, ut tempor lacus. Nam eleifend est at libero scelerisque volutpat. Nulla suscipit vitae metus nec gravida.</string>
     <string name="button_label_more_info">More Info</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

@@ -21,7 +21,6 @@ public class DataProvider {
         mNetworkLoader = new LoaderNetwork(
                 apiKey,
                 new File(context.getCacheDir().getAbsolutePath()));
-
     }
 
     public void getPopularMovies(final CommonCallback<MoviesContainer> masterCallback) {

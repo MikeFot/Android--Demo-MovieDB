@@ -13,6 +13,8 @@ public interface IntentDispatcher {
 
     void dispatchForResult(View source, Intent intent, int requestCode);
 
+    void openHomeActivity();
+
     IntentFactory getIntentFactory();
 
 }

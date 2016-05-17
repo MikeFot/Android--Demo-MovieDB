@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primary_light"
+                android:orientation="vertical">
+
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_movie">
+
+
+            <RelativeLayout
+                android:id="@+id/layout_quote"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/margin_16dp">
+
+                <TextView
+                    android:id="@+id/quote"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/primary_text"
+                    android:textSize="24sp"
+                    tools:text="It is better to travel well than to arrive. Unless you are going to hospital."/>
+
+                <TextView
+                    android:id="@+id/quote_author"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/quote"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:gravity="center"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="16sp"
+                    tools:text="-Buddha"/>
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/layout_quote"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                tools:background="@color/primary_dark"/>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/error_layout"
+            layout="@layout/includable_default_error_page"/>
+    </ViewFlipper>
+</RelativeLayout>
+

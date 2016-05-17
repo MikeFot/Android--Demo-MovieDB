@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.michaelfotiadis.moviedb.common.exceptions.CoreException;
 import com.michaelfotiadis.moviedb.core.data.loader.DataProvider;
+import com.michaelfotiadis.moviedb.core.preference.ConfigPreferenceManager;
 import com.michaelfotiadis.moviedb.core.utils.CoreLog;
 
 /**
@@ -34,6 +35,11 @@ public final class DemoCore {
      * Endpoint for network calls
      */
     private String mEndpoint;
+
+    /**
+     * {@link com.michaelfotiadis.moviedb.core.preference.PreferenceManager}
+     */
+    private ConfigPreferenceManager mPreferenceManager;
 
     private DemoCore() {
         // DO NOT INSTANTIATE
@@ -80,6 +86,8 @@ public final class DemoCore {
 
         getInstance().mDataProvider = new DataProvider(context, apiKey);
 
+        getInstance().mPreferenceManager = new ConfigPreferenceManager(context);
+
         CoreLog.d("Core Initialised with installation id " + getInstance().getInstallationId());
     }
 
@@ -93,6 +101,10 @@ public final class DemoCore {
         } else {
             throw new IllegalStateException("Installation ID requested before initialising the SDK.");
         }
+    }
+
+    public static ConfigPreferenceManager getPreferenceManager() {
+        return getInstance().mPreferenceManager;
     }
 
     public static String getEndpoint() {

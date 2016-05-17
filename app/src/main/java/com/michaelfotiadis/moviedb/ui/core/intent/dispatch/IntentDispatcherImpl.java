@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.michaelfotiadis.moviedb.ui.core.intent.factory.IntentFactory;
 import com.michaelfotiadis.moviedb.ui.core.intent.factory.IntentFactoryImpl;
+import com.michaelfotiadis.moviedb.utils.AppLog;
 
 
 /**
@@ -41,6 +42,15 @@ public class IntentDispatcherImpl implements IntentDispatcher {
                 .dispatch(intent);
     }
 
+    @Override
+    public void openHomeActivity() {
+        AppLog.d("Starting sign-in activity");
+        final Intent intent = mIntentFactory.getHomeIntent();
+
+        mDispatcher
+                .withAnimation(ActivityAnimation.SLIDE_UP_FROM_BOTTOM)
+                .dispatch(intent);
+    }
 
     @Override
     public IntentFactory getIntentFactory() {
