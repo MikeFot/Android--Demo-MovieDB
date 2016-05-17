@@ -38,6 +38,10 @@ public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerVie
             holder.description.setText(item.getOverview());
             holder.rating.setText(String.valueOf(item.getVoteAverage()));
             holder.date.setText(DateUtils.getReleaseYear(item.getReleaseDate()));
+            getImageFetcher().loadPoster(
+                    item.getBackdropPath(),
+                    holder.poster
+            );
         }
     }
 

@@ -20,6 +20,14 @@ public class ConfigPreferenceManager implements PreferenceManager {
         mContext = context.getApplicationContext();
     }
 
+    public String getImageBaseUrl() {
+        return getPreferences().getString(KEY_IMAGE_BASE_URL, null);
+    }
+
+    private SharedPreferences getPreferences() {
+        return mContext.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+    }
+
     public Configuration getConfiguration() {
         final String value = getPreferences().getString(KEY_CONFIGURATION, null);
         return CoreGson.get().fromJson(value, Configuration.class);
@@ -47,11 +55,6 @@ public class ConfigPreferenceManager implements PreferenceManager {
         editor.putString(KEY_IMAGE_BASE_URL, value);
         editor.apply();
         CoreLog.d("Wrote base image url " + value);
-    }
-
-
-    private SharedPreferences getPreferences() {
-        return mContext.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
     }
 
 }

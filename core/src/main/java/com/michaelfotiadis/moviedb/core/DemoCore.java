@@ -118,4 +118,8 @@ public final class DemoCore {
     public static DataProvider getDataProvider() {
         return getInstance().mDataProvider;
     }
+
+    public static String getImageBaseUrl() {
+        return getPreferenceManager().getImageBaseUrl();
+    }
 }

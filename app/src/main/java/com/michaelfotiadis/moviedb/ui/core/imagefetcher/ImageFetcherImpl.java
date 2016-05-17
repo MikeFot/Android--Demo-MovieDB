@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.widget.ImageView;
 
 import com.michaelfotiadis.moviedb.R;
+import com.michaelfotiadis.moviedb.core.DemoCore;
+import com.michaelfotiadis.moviedb.utils.AppLog;
+
+import java.util.List;
 
 /**
  *
@@ -73,6 +77,29 @@ public final class ImageFetcherImpl implements ImageFetcher {
                 .build();
 
         internalLoad(request, imageView, callback);
+    }
+
+    @Override
+    public void loadPoster(final String path,
+                           final ImageView imageView) {
+
+        final String base = DemoCore.getImageBaseUrl();
+
+
+        final List<String> posterSizes = DemoCore.getPreferenceManager().getConfiguration().getImages().getPosterSizes();
+
+        final int position;
+        if (posterSizes.size() >= 3) {
+            position = posterSizes.size() - 2;
+        } else {
+            position = 0;
+        }
+
+        final String size = posterSizes.get(position);
+        final String url = base + size + path;
+        AppLog.d("ImageUrl: Final image url is " + url);
+        loadIntoImageView(url, imageView);
+
     }
 
     @Override
