@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.michaelfotiadis.moviedb.ui.components.home.HomeActivity;
+import com.michaelfotiadis.moviedb.ui.components.moviedetails.MovieDetailsActivity;
 
 
 /**
@@ -15,6 +16,11 @@ public class IntentFactoryImpl implements IntentFactory {
 
     public IntentFactoryImpl(final Context context) {
         mContext = context.getApplicationContext();
+    }
+
+    @Override
+    public Intent getMovieDetailsIntent(final String id) {
+        return MovieDetailsActivity.getInstance(mContext, id);
     }
 
     @Override

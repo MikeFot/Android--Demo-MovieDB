@@ -9,6 +9,7 @@ import com.michaelfotiadis.moviedb.common.responses.CommonError;
 import com.michaelfotiadis.moviedb.core.DemoCore;
 import com.michaelfotiadis.moviedb.data.error.UiDataLoadError;
 import com.michaelfotiadis.moviedb.data.error.UiDataLoadErrorFactory;
+import com.michaelfotiadis.moviedb.utils.AppLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,14 @@ public class MovieDetailsLoader extends DataFeedLoaderAbstract<MovieDetails> {
                 // move the current Thread into the background
                 android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
 
+                AppLog.d(String.format("Loading movie for id %s", id));
+
                 DemoCore.getDataProvider().getMovieById(
                         id,
                         new CommonCallback<MovieDetails>() {
                             @Override
                             public void onFailure(final CommonError error) {
+                                AppLog.e("Loader received error: " + error.getErrorMessage());
                                 final UiDataLoadError uiError = UiDataLoadErrorFactory.createError(getActivity(), error);
                                 notifyError(uiError);
                             }

@@ -7,5 +7,7 @@ import android.content.Intent;
  */
 public interface IntentFactory {
 
+    Intent getMovieDetailsIntent(String id);
+
     Intent getHomeIntent();
 }

@@ -54,6 +54,11 @@ public class SplashActivity extends BaseActivity {
                 mErrorLayout,
                 new ErrorQuotePicker(SplashActivity.this));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadConfiguration();
     }
 

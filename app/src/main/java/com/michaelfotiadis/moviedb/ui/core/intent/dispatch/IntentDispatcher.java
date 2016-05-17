@@ -15,6 +15,8 @@ public interface IntentDispatcher {
 
     void openHomeActivity();
 
+    void openMovieDetailsActivity(View source, String id);
+
     IntentFactory getIntentFactory();
 
 }

@@ -53,6 +53,17 @@ public class IntentDispatcherImpl implements IntentDispatcher {
     }
 
     @Override
+    public void openMovieDetailsActivity(final View source, final String id) {
+        AppLog.d(String.format("Starting open movie details activity for id %s", id));
+        final Intent intent = mIntentFactory.getMovieDetailsIntent(id);
+
+        mDispatcher.withView(source)
+                .withAnimation(ActivityAnimation.SCALE_UP_FROM_VIEW)
+                .dispatch(intent);
+    }
+
+
+    @Override
     public IntentFactory getIntentFactory() {
         return mIntentFactory;
     }

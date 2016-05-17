@@ -1,6 +1,7 @@
 package com.michaelfotiadis.moviedb.ui.core.common.actionbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 /**
  *
@@ -16,6 +17,8 @@ public interface AppActionBar {
     void setTitle(final CharSequence charSequence);
 
     void setTitle(final CharSequence charSequence, final int[] color);
+
+    TextView getTitleView();
 
     void setTitleAlpha(final float alpha);
 

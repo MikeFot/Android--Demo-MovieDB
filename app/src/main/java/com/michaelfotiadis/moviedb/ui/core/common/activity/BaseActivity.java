@@ -6,9 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 
 import com.michaelfotiadis.moviedb.R;
 import com.michaelfotiadis.moviedb.ui.core.common.actionbar.ActionBarred;
@@ -131,6 +135,21 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
 
     @Override
     public void setTitle(final CharSequence title) {
+
+        if (!TextUtils.isEmpty(mCustomActionbar.getTitleView().getText())) {
+            final Animation in = new AlphaAnimation(0.5f, 1.0f);
+            in.setDuration(200);
+
+            final Animation out = new AlphaAnimation(1.0f, 0.5f);
+            out.setDuration(0);
+
+            final AnimationSet as = new AnimationSet(true);
+            as.addAnimation(out);
+            in.setStartOffset(200);
+            as.addAnimation(in);
+            mCustomActionbar.getTitleView().startAnimation(as);
+
+        }
         mCustomActionbar.setTitle(title);
     }
 

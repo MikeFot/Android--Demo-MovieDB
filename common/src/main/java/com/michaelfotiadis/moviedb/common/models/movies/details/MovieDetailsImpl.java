@@ -10,15 +10,15 @@ import java.util.List;
 
 public class MovieDetailsImpl implements MovieDetails {
 
-    public static final Creator<MovieDetails> CREATOR = new Creator<MovieDetails>() {
+    public static final Creator<MovieDetailsImpl> CREATOR = new Creator<MovieDetailsImpl>() {
         @Override
-        public MovieDetails createFromParcel(Parcel source) {
+        public MovieDetailsImpl createFromParcel(final Parcel source) {
             return new MovieDetailsImpl(source);
         }
 
         @Override
-        public MovieDetails[] newArray(int size) {
-            return new MovieDetails[size];
+        public MovieDetailsImpl[] newArray(final int size) {
+            return new MovieDetailsImpl[size];
         }
     };
     @SerializedName("adult")
@@ -26,7 +26,7 @@ public class MovieDetailsImpl implements MovieDetails {
     @SerializedName("backdrop_path")
     private final String backdropPath;
     @SerializedName("belongs_to_collection")
-    private final String belongsToCollection;
+    private final BelongsToCollection belongsToCollection;
     @SerializedName("budget")
     private final Integer budget;
     @SerializedName("genres")
@@ -72,7 +72,7 @@ public class MovieDetailsImpl implements MovieDetails {
     @SerializedName("vote_count")
     private final Integer voteCount;
 
-    private MovieDetailsImpl(Builder builder) {
+    private MovieDetailsImpl(final Builder builder) {
         adult = builder.adult;
         backdropPath = builder.backdropPath;
         belongsToCollection = builder.belongsToCollection;
@@ -100,10 +100,10 @@ public class MovieDetailsImpl implements MovieDetails {
         voteCount = builder.voteCount;
     }
 
-    protected MovieDetailsImpl(Parcel in) {
+    protected MovieDetailsImpl(final Parcel in) {
         this.adult = (Boolean) in.readValue(Boolean.class.getClassLoader());
         this.backdropPath = in.readString();
-        this.belongsToCollection = in.readString();
+        this.belongsToCollection = in.readParcelable(BelongsToCollection.class.getClassLoader());
         this.budget = (Integer) in.readValue(Integer.class.getClassLoader());
         this.genres = in.createTypedArrayList(GenreImpl.CREATOR);
         this.homepage = in.readString();
@@ -132,8 +132,8 @@ public class MovieDetailsImpl implements MovieDetails {
         return new Builder();
     }
 
-    public static Builder newBuilder(MovieDetailsImpl copy) {
-        Builder builder = new Builder();
+    public static Builder newBuilder(final MovieDetailsImpl copy) {
+        final Builder builder = new Builder();
         builder.adult = copy.adult;
         builder.backdropPath = copy.backdropPath;
         builder.belongsToCollection = copy.belongsToCollection;
@@ -173,7 +173,7 @@ public class MovieDetailsImpl implements MovieDetails {
     }
 
     @Override
-    public Object getBelongsToCollection() {
+    public BelongsToCollection getBelongsToCollection() {
         return belongsToCollection;
     }
 
@@ -190,11 +190,6 @@ public class MovieDetailsImpl implements MovieDetails {
     @Override
     public String getHomepage() {
         return homepage;
-    }
-
-    @Override
-    public Long getId() {
-        return Long.valueOf(id);
     }
 
     @Override
@@ -288,15 +283,20 @@ public class MovieDetailsImpl implements MovieDetails {
     }
 
     @Override
+    public Long getId() {
+        return Long.valueOf(id);
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeValue(this.adult);
         dest.writeString(this.backdropPath);
-        dest.writeString(this.belongsToCollection);
+        dest.writeParcelable(this.belongsToCollection, flags);
         dest.writeValue(this.budget);
         dest.writeTypedList(this.genres);
         dest.writeString(this.homepage);
@@ -324,7 +324,7 @@ public class MovieDetailsImpl implements MovieDetails {
     public static final class Builder {
         private Boolean adult;
         private String backdropPath;
-        private String belongsToCollection;
+        private BelongsToCollection belongsToCollection;
         private Integer budget;
         private List<Genre> genres;
         private String homepage;
@@ -351,132 +351,132 @@ public class MovieDetailsImpl implements MovieDetails {
         private Builder() {
         }
 
-        public Builder withAdult(Boolean val) {
+        public Builder withAdult(final Boolean val) {
             adult = val;
             return this;
         }
 
-        public Builder withBackdropPath(String val) {
+        public Builder withBackdropPath(final String val) {
             backdropPath = val;
             return this;
         }
 
-        public Builder withBelongsToCollection(String val) {
+        public Builder withBelongsToCollection(final BelongsToCollection val) {
             belongsToCollection = val;
             return this;
         }
 
-        public Builder withBudget(Integer val) {
+        public Builder withBudget(final Integer val) {
             budget = val;
             return this;
         }
 
-        public Builder withGenres(List<Genre> val) {
+        public Builder withGenres(final List<Genre> val) {
             genres = val;
             return this;
         }
 
-        public Builder withHomepage(String val) {
+        public Builder withHomepage(final String val) {
             homepage = val;
             return this;
         }
 
-        public Builder withId(Integer val) {
+        public Builder withId(final Integer val) {
             id = val;
             return this;
         }
 
-        public Builder withImdbId(String val) {
+        public Builder withImdbId(final String val) {
             imdbId = val;
             return this;
         }
 
-        public Builder withOriginalLanguage(String val) {
+        public Builder withOriginalLanguage(final String val) {
             originalLanguage = val;
             return this;
         }
 
-        public Builder withOriginalTitle(String val) {
+        public Builder withOriginalTitle(final String val) {
             originalTitle = val;
             return this;
         }
 
-        public Builder withOverview(String val) {
+        public Builder withOverview(final String val) {
             overview = val;
             return this;
         }
 
-        public Builder withPopularity(Float val) {
+        public Builder withPopularity(final Float val) {
             popularity = val;
             return this;
         }
 
-        public Builder withPosterPath(String val) {
+        public Builder withPosterPath(final String val) {
             posterPath = val;
             return this;
         }
 
-        public Builder withProductionCompanies(List<ProductionCompany> val) {
+        public Builder withProductionCompanies(final List<ProductionCompany> val) {
             productionCompanies = val;
             return this;
         }
 
-        public Builder withProductionCountries(List<ProductionCountry> val) {
+        public Builder withProductionCountries(final List<ProductionCountry> val) {
             productionCountries = val;
             return this;
         }
 
-        public Builder withReleaseDate(String val) {
+        public Builder withReleaseDate(final String val) {
             releaseDate = val;
             return this;
         }
 
-        public Builder withRevenue(Integer val) {
+        public Builder withRevenue(final Integer val) {
             revenue = val;
             return this;
         }
 
-        public Builder withRuntime(Integer val) {
+        public Builder withRuntime(final Integer val) {
             runtime = val;
             return this;
         }
 
-        public Builder withSpokenLanguages(List<SpokenLanguage> val) {
+        public Builder withSpokenLanguages(final List<SpokenLanguage> val) {
             spokenLanguages = val;
             return this;
         }
 
-        public Builder withStatus(String val) {
+        public Builder withStatus(final String val) {
             status = val;
             return this;
         }
 
-        public Builder withTagline(String val) {
+        public Builder withTagline(final String val) {
             tagline = val;
             return this;
         }
 
-        public Builder withTitle(String val) {
+        public Builder withTitle(final String val) {
             title = val;
             return this;
         }
 
-        public Builder withVideo(Boolean val) {
+        public Builder withVideo(final Boolean val) {
             video = val;
             return this;
         }
 
-        public Builder withVoteAverage(Float val) {
+        public Builder withVoteAverage(final Float val) {
             voteAverage = val;
             return this;
         }
 
-        public Builder withVoteCount(Integer val) {
+        public Builder withVoteCount(final Integer val) {
             voteCount = val;
             return this;
         }
 
-        public MovieDetails build() {
+        public MovieDetailsImpl build() {
             return new MovieDetailsImpl(this);
         }
     }

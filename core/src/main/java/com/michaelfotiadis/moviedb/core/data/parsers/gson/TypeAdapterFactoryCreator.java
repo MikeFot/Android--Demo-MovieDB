@@ -14,6 +14,8 @@ import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.common.models.movies.MovieImpl;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainerImpl;
+import com.michaelfotiadis.moviedb.common.models.movies.details.BelongsToCollection;
+import com.michaelfotiadis.moviedb.common.models.movies.details.BelongsToCollectionImpl;
 import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetails;
 import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetailsImpl;
 import com.michaelfotiadis.moviedb.common.models.movies.details.ProductionCompany;
@@ -63,6 +65,7 @@ import java.util.Set;
         adapters.add(create(ProductionCompany.class, ProductionCompanyImpl.class));
         adapters.add(create(ProductionCountry.class, ProductionCountryImpl.class));
         adapters.add(create(SpokenLanguage.class, SpokenLanguageImpl.class));
+        adapters.add(create(BelongsToCollection.class, BelongsToCollectionImpl.class));
 
     }
 

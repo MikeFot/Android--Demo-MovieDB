@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.view.View;
 
 import com.michaelfotiadis.moviedb.R;
 import com.michaelfotiadis.moviedb.data.model.UiMovie;
@@ -42,6 +43,14 @@ public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerVie
                     item.getPosterUrl(),
                     holder.poster
             );
+
+            holder.moreInfoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    getIntentDispatcher().openMovieDetailsActivity(holder.poster, String.valueOf(item.getId()));
+                }
+            });
+
         }
     }
 

@@ -14,7 +14,7 @@ public interface MovieDetails extends AppModel, WithLongId {
 
     String getBackdropPath();
 
-    Object getBelongsToCollection();
+    BelongsToCollection getBelongsToCollection();
 
     Integer getBudget();
 

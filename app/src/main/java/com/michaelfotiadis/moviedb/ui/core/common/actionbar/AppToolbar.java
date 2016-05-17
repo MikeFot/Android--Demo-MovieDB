@@ -1,5 +1,6 @@
 package com.michaelfotiadis.moviedb.ui.core.common.actionbar;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -52,7 +53,7 @@ public class AppToolbar implements AppActionBar {
 
     @Override
     public void goTransparent() {
-        mToolbar.setBackgroundColor(mActivity.getResources().getColor(android.R.color.transparent));
+        mToolbar.setBackgroundColor(ContextCompat.getColor(mActivity, android.R.color.transparent));
     }
 
     @Override
@@ -69,6 +70,11 @@ public class AppToolbar implements AppActionBar {
     public void setTitle(final CharSequence title) {
         mActionbar.setDisplayShowTitleEnabled(false);
         mTitleTextView.setText(title);
+    }
+
+    @Override
+    public TextView getTitleView() {
+        return mTitleTextView;
     }
 
     @Override
