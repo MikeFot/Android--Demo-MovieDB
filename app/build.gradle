@@ -65,13 +65,11 @@ android {
         dev {
             applicationId "com.michaelfotiadis.moviedb.dev"
             resValue("string", "app_name", "Movie DB Demo Dev")
-            buildConfigField BOOLEAN, "STRICT_MODE", "true"
             buildConfigField STRING, "ENDPOINT", '"http://private-anon-ebfdf98e7-themoviedb.apiary-proxy.com/3"'
         }
         mock {
             applicationId "com.michaelfotiadis.moviedb.mock"
-            resValue("string", "app_name", "Movie DB Demo Dev")
-            buildConfigField BOOLEAN, "STRICT_MODE", "false"
+            resValue("string", "app_name", "Movie DB Demo Mock")
             buildConfigField STRING, "ENDPOINT", '"http://private-anon-ebfdf98e7-themoviedb.apiary-mock.com/3"'
         }
     }
@@ -81,9 +79,8 @@ android {
         release {
             minifyEnabled true
             debuggable false
-
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+            buildConfigField BOOLEAN, "STRICT_MODE", "false"
             buildConfigField "Boolean", "DEV_MODE", "false"
 
         }
@@ -91,7 +88,7 @@ android {
         debug {
             testCoverageEnabled true
             debuggable true
-
+            buildConfigField BOOLEAN, "STRICT_MODE", "true"
             buildConfigField "Boolean", "DEV_MODE", "true"
         }
 

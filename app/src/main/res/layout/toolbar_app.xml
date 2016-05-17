@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
+        style="@style/MovieDb.NavTitle"
         tools:text="Toolbar Title"/>
 
 </android.support.v7.widget.Toolbar>

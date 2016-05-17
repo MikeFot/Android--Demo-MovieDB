@@ -2,9 +2,9 @@
 <resources>
 
     <style name="MovieDb.TabLayout">
-        <item name="tabIndicatorColor">@color/primary_light</item>
+        <item name="tabIndicatorColor">@color/accent</item>
         <item name="tabTextColor">@color/primary_light</item>
-        <item name="tabSelectedTextColor">@color/primary_light</item>
+        <item name="tabSelectedTextColor">@color/text</item>
     </style>
 
     <style name="MovieDb.TabLayout.Scrollable" parent="MovieDb.TabLayout">

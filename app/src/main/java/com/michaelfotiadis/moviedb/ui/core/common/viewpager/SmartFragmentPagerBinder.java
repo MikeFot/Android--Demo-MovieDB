@@ -7,6 +7,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 
@@ -16,7 +17,7 @@ import com.michaelfotiadis.moviedb.R;
  *
  */
 public final class SmartFragmentPagerBinder {
-    private static final int TAB_SELECTED_COLOR_ID = R.color.primary_light;
+    private static final int TAB_SELECTED_COLOR_ID = R.color.accent;
 
     private final NavBarTitleNeedsChangingListener callback;
     private final boolean isLollipop;
@@ -35,7 +36,7 @@ public final class SmartFragmentPagerBinder {
                                     final SmartFragmentPagerPages pages,
                                     final TabLayout tabLayout,
                                     final NavBarTitleNeedsChangingListener callback) {
-        final int selectedTabColor = pager.getContext().getResources().getColor(TAB_SELECTED_COLOR_ID);
+        final int selectedTabColor = ContextCompat.getColor(pager.getContext(), TAB_SELECTED_COLOR_ID);
         this.isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
         this.pager = pager;
         this.pages = pages;
