@@ -131,7 +131,7 @@ public abstract class BaseRecyclerViewAdapter<D, VH extends RecyclerView.ViewHol
     }
 
     private static String getClassName(final List<?> list) {
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return "<unknown>";
         } else {
             return getClassName(list.get(0));

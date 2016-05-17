@@ -2,6 +2,11 @@ package com.michaelfotiadis.moviedb.core.data.loader;
 
 import android.content.Context;
 
+import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
+import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
+import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
+import com.michaelfotiadis.moviedb.common.responses.CommonCallback;
+
 import java.io.File;
 
 /**
@@ -18,7 +23,16 @@ public class DataProvider {
 
     }
 
-    public LoaderNetwork getNetworkLoader() {
-        return mNetworkLoader;
+    public void getPopularMovies(final CommonCallback<MoviesContainer> masterCallback) {
+        mNetworkLoader.getPopularMovies(masterCallback);
     }
+
+    public void getPopularPeople(final CommonCallback<PeopleContainer> masterCallback) {
+        mNetworkLoader.getPopularPeople(masterCallback);
+    }
+
+    public void getPopularSeries(final CommonCallback<TvSeriesContainer> masterCallback) {
+        mNetworkLoader.getPopularSeries(masterCallback);
+    }
+
 }

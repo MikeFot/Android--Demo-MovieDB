@@ -1,0 +1,64 @@
+package com.michaelfotiadis.moviedb.ui.components.movie;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.michaelfotiadis.moviedb.common.models.movies.Movie;
+import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.adapter.BaseRecyclerViewAdapter;
+import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ */
+public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<Movie, MovieRecyclerViewHolder> {
+
+    private final MovieRecyclerBinder mBinder;
+
+    public MovieRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
+        super(activity, intentDispatcher);
+        mBinder = new MovieRecyclerBinder(activity, intentDispatcher);
+    }
+
+    @Override
+    protected boolean isItemValid(final Movie item) {
+        return item != null && item.getId() != null;
+    }
+
+    @Override
+    public MovieRecyclerViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+
+        final View view = LayoutInflater.from(parent.getContext())
+                .inflate(MovieRecyclerViewHolder.getLayoutId(), parent, false);
+
+        return new MovieRecyclerViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final MovieRecyclerViewHolder holder,
+                                 final int position) {
+
+        final Movie item = getItem(position);
+
+        mBinder.bind(holder, item);
+
+    }
+
+    private List<Movie> filter(final List<Movie> items, String query) {
+        query = query.toLowerCase();
+
+        final List<Movie> filteredModelList = new ArrayList<>();
+        for (final Movie item : items) {
+            final String text = item.getTitle().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(item);
+            }
+        }
+        return filteredModelList;
+    }
+
+}

@@ -8,6 +8,9 @@ import android.support.v4.view.ViewPager;
 
 import com.crashlytics.android.Crashlytics;
 import com.michaelfotiadis.moviedb.R;
+import com.michaelfotiadis.moviedb.ui.components.movie.MovieFeedFragment;
+import com.michaelfotiadis.moviedb.ui.components.people.PeopleFeedFragment;
+import com.michaelfotiadis.moviedb.ui.components.tv.TvSeriesFeedFragment;
 import com.michaelfotiadis.moviedb.ui.core.common.activity.BaseActivity;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerAdapter;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerBinder;
@@ -22,6 +25,8 @@ public class HomeActivity extends BaseActivity {
 
     private static final int LAYOUT_ID = R.layout.activity_default_view_pager;
 
+    private static final int OFF_PAGE_LIMIT = 2;
+
     public static Intent getInstance(final Context context) {
         return new Intent(context, HomeActivity.class);
     }
@@ -31,6 +36,7 @@ public class HomeActivity extends BaseActivity {
     protected ViewPager mPager;
     @Bind(R.id.tabs)
     protected TabLayout mTabLayout;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +50,7 @@ public class HomeActivity extends BaseActivity {
         final SmartFragmentPagerAdapter mAdapter = new SmartFragmentPagerAdapter(getSupportFragmentManager());
         mAdapter.setFragments(pages);
         mPager.setAdapter(mAdapter);
-        mPager.setOffscreenPageLimit(1);
+        mPager.setOffscreenPageLimit(OFF_PAGE_LIMIT);
 
         final SmartFragmentPagerBinder binder =
                 new SmartFragmentPagerBinder(mPager, pages, mTabLayout,
@@ -61,19 +67,17 @@ public class HomeActivity extends BaseActivity {
         mPager.setCurrentItem(startingPage);
         //noinspection ConstantConditions
         if (startingPage == 0) {
-            // The onPageSelectedEvent of OnPageChangeListener is not called for the
-            // first page
+            // The onPageSelectedEvent of OnPageChangeListener is not called for the first page
             binder.onPageSelected(0);
         }
     }
-
 
     private SmartFragmentPagerPages getPages() {
         final SmartFragmentPagerPages pages = new SmartFragmentPagerPages();
 
         pages.add(new SmartFragmentPagerPage.Builder()
                 .setNavBarTitle(getString(R.string.tab_title_movie_feed))
-                .setTabIcon(R.drawable.ic_moviep)
+                .setTabIcon(R.drawable.ic_movie)
                 .setFragment(MovieFeedFragment.newInstance())
                 .build());
 

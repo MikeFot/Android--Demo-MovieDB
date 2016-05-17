@@ -22,4 +22,8 @@
     <string name="tab_title_movie_feed">Movies</string>
     <string name="tab_title_people">People</string>
     <string name="tab_title_tv_series">TV Series</string>
+    <string name="friendly_error_you_are_offline">You need to be online to perform this action!</string>
+    <string name="friendly_error_something_went_wrong">Something went wrong...</string>
+    <string name="friendly_error_no_connection">No network connection.</string>
+    <string name="friendly_error_no_data">Data not found</string>
 </resources>
