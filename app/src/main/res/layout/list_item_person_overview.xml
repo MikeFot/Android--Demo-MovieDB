@@ -51,7 +51,7 @@
 
             <include
                 android:id="@+id/poster_container"
-                layout="@layout/includable_poster"
+                layout="@layout/includable_vertical_poster"
                 android:layout_width="@dimen/movie_feed_poster_width_large"
                 android:layout_height="wrap_content"/>
 

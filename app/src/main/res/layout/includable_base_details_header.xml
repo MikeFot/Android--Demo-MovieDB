@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    app:aspectRatio="@string/poster_aspect_horizontal_ratio">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:id="@+id/image_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                tools:src="@drawable/poster_header"/>
+
+
+            <me.grantland.widget.AutofitLayout
+                android:id="@+id/title_autofit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="36sp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/text"
+                    android:maxLines="2"
+                    tools:text="Title"/>
+            </me.grantland.widget.AutofitLayout>
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/title_autofit"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/accent"
+                android:textSize="24sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                tools:text="status"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout>

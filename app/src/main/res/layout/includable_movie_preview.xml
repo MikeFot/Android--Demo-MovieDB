@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/poster_container"
-        layout="@layout/includable_poster"
+        layout="@layout/includable_vertical_poster"
         android:layout_width="48dp"
         android:layout_height="wrap_content"/>
 

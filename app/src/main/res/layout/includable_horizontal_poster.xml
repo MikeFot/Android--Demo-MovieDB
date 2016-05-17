@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout
+    android:id="@+id/poster_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:aspectRatio="@string/poster_aspect_horizontal_ratio"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/poster"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        tools:src="@drawable/poster_header"/>
+</com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout>
