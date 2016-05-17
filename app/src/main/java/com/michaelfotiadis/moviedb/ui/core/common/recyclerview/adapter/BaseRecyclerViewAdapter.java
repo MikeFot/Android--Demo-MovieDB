@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 
 import com.michaelfotiadis.moviedb.ui.core.common.activity.BaseActivity;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcherImpl;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcherImpl;
 import com.michaelfotiadis.moviedb.utils.AppLog;
@@ -14,15 +16,24 @@ import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter<D, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
+    private final ImageFetcher mImageFetcher;
     private final Activity mActivity;
     private final IntentDispatcher mIntentDispatcher;
     private final List<D> mItems = new ArrayList<>();
     private boolean dataAdditionAttempted = false;
     private OnItemsChangedListener listener;
 
+    protected BaseRecyclerViewAdapter(final Activity activity) {
+        mActivity = activity;
+        mImageFetcher = createImageFetcher(activity);
+        mIntentDispatcher = createIntentDispatcher(activity);
+    }
+
     protected BaseRecyclerViewAdapter(final Activity activity,
+                                      final ImageFetcher imageFetcher,
                                       final IntentDispatcher intentDispatcher) {
         mActivity = activity;
+        mImageFetcher = imageFetcher;
         mIntentDispatcher = intentDispatcher;
     }
 
@@ -32,6 +43,18 @@ public abstract class BaseRecyclerViewAdapter<D, VH extends RecyclerView.ViewHol
         } else {
             return new IntentDispatcherImpl(activity);
         }
+    }
+
+    protected static ImageFetcher createImageFetcher(final Activity activity) {
+        if (activity instanceof BaseActivity) {
+            return ((BaseActivity) activity).getImageFetcher();
+        } else {
+            return new ImageFetcherImpl(activity);
+        }
+    }
+
+    protected ImageFetcher getImageFetcher() {
+        return mImageFetcher;
     }
 
     public Activity getActivity() {

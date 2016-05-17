@@ -46,7 +46,7 @@ public final class UiDataLoadErrorFactory {
             case NO_NETWORK:
                 return context.getString(R.string.friendly_error_no_connection);
             case NO_DATA:
-                return context.getString(R.string.friendly_error_no_data);
+                return context.getString(R.string.friendly_error_missing_data);
             default:
                 return context.getString(R.string.friendly_error_something_went_wrong);
         }

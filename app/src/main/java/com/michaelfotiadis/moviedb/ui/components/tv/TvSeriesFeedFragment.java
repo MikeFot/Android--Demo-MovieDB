@@ -59,7 +59,7 @@ public class TvSeriesFeedFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mRecyclerManager = new RecyclerManager.Builder<>(
-                new TvRecyclerViewAdapter(getActivity(), getIntentDispatcher()))
+                new TvRecyclerViewAdapter(getActivity(), getImageFetcher(), getIntentDispatcher()))
                 .setRecycler(mRecyclerView)
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(getString(R.string.friendly_error_no_data))

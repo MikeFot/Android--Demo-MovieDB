@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.adapter.BaseRecyclerViewAdapter;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 
 import java.util.ArrayList;
@@ -19,9 +20,16 @@ public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<Movie, Mov
 
     private final MovieRecyclerBinder mBinder;
 
-    public MovieRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
-        super(activity, intentDispatcher);
-        mBinder = new MovieRecyclerBinder(activity, intentDispatcher);
+    public MovieRecyclerViewAdapter(final Activity activity) {
+        super(activity);
+        mBinder = new MovieRecyclerBinder(activity, getImageFetcher(), getIntentDispatcher());
+    }
+
+    public MovieRecyclerViewAdapter(final Activity activity,
+                                    final ImageFetcher imageFetcher,
+                                    final IntentDispatcher intentDispatcher) {
+        super(activity, imageFetcher, intentDispatcher);
+        mBinder = new MovieRecyclerBinder(activity, getImageFetcher(), getIntentDispatcher());
     }
 
     @Override

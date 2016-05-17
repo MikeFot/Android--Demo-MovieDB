@@ -9,6 +9,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import com.michaelfotiadis.moviedb.R;
 import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 
 import java.util.Random;
@@ -20,8 +21,10 @@ public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerVie
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_movie;
 
-    protected MovieRecyclerBinder(final Context context, final IntentDispatcher intentDispatcher) {
-        super(context, intentDispatcher);
+    protected MovieRecyclerBinder(final Context context,
+                                  final ImageFetcher imageFetcher,
+                                  final IntentDispatcher intentDispatcher) {
+        super(context, imageFetcher, intentDispatcher);
     }
 
     @Override

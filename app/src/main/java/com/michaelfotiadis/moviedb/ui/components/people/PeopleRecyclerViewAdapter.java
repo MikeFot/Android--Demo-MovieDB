@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.michaelfotiadis.moviedb.common.models.people.Person;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.adapter.BaseRecyclerViewAdapter;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ public class PeopleRecyclerViewAdapter extends BaseRecyclerViewAdapter<Person, P
 
     private final PeopleRecyclerBinder mBinder;
 
-    public PeopleRecyclerViewAdapter(final Activity activity, final IntentDispatcher intentDispatcher) {
-        super(activity, intentDispatcher);
-        mBinder = new PeopleRecyclerBinder(activity, intentDispatcher);
+    public PeopleRecyclerViewAdapter(final Activity activity,
+                                     final ImageFetcher imageFetcher,
+                                     final IntentDispatcher intentDispatcher) {
+        super(activity, imageFetcher, intentDispatcher);
+        mBinder = new PeopleRecyclerBinder(activity, imageFetcher, intentDispatcher);
     }
 
     @Override

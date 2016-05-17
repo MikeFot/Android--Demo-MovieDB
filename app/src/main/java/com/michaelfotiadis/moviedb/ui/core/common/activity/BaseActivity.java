@@ -16,6 +16,8 @@ import com.michaelfotiadis.moviedb.ui.core.common.actionbar.AppActionBar;
 import com.michaelfotiadis.moviedb.ui.core.common.actionbar.AppToolbar;
 import com.michaelfotiadis.moviedb.ui.core.common.notifications.ActivityNotificationController;
 import com.michaelfotiadis.moviedb.ui.core.common.notifications.SnackBarNotificationController;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcherImpl;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcherImpl;
 import com.michaelfotiadis.moviedb.utils.AppLog;
@@ -29,6 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
     private AppActionBar mCustomActionbar;
     private ActivityNotificationController mNotificationController;
     private IntentDispatcher mIntentDispatcher;
+    private ImageFetcher mImageFetcher;
 
     protected void addContentFragmentIfMissing(final Fragment fragment, final String fragmentTag) {
         if (getSupportFragmentManager().findFragmentByTag(fragmentTag) == null) {
@@ -64,6 +67,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
         return mIntentDispatcher;
     }
 
+    public ImageFetcher getImageFetcher() {
+        return mImageFetcher;
+    }
+
     @Override
     public void onBackPressed() {
         if (this instanceof BackBlocker) {
@@ -84,6 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActionBa
 
     private void onCreateCommon(final Bundle savedInstanceState) {
         CrashlyticsLogKeyController.onCreate(this);
+        mImageFetcher = new ImageFetcherImpl(this);
         mIntentDispatcher = new IntentDispatcherImpl(this);
     }
 

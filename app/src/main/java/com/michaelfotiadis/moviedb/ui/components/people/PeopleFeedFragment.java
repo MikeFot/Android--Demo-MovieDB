@@ -60,7 +60,7 @@ public class PeopleFeedFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mRecyclerManager = new RecyclerManager.Builder<>(
-                new PeopleRecyclerViewAdapter(getActivity(), getIntentDispatcher()))
+                new PeopleRecyclerViewAdapter(getActivity(), getImageFetcher(), getIntentDispatcher()))
                 .setRecycler(mRecyclerView)
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(getString(R.string.friendly_error_no_data))
