@@ -3,9 +3,9 @@ Android Material Design application for accessing Movie DB data using a guest ac
 
 ## Structure ##
 The application is using 3 modules: 
-- **common** (library): contains base models and utility objects.
-- **core** (library): contains internal data providers, app models and basic interfaces / response objects, and core business logic.
-- **app**: contains base UI components, their implementations and dedicated data loaders.
+* **common** (library): contains base models and utility objects.
+* **core** (library): contains internal data providers, app models and basic interfaces / response objects, and core business logic.
+* **app**: contains base UI components, their implementations and dedicated data loaders.
 
 ## Build ##
 ### Built Types ###
