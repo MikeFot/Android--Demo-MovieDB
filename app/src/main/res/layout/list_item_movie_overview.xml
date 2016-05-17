@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="260dp"
     android:layout_margin="@dimen/margin_8dp"
     card_view:cardBackgroundColor="@color/window_background_alt"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
@@ -50,12 +50,12 @@
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:layout_marginBottom="@dimen/margin_8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 tools:text="@string/lorem"
                 android:ellipsize="end"
                 android:scrollHorizontally="true"
                 android:singleLine="false"
-                android:layout_above="@id/divider"
+                android:layout_above="@+id/divider"
                 android:layout_below="@id/layout_subtitle"/>
 
             <View
@@ -63,7 +63,6 @@
                 android:layout_height="@dimen/divider_height"
                 android:id="@+id/divider"
                 android:layout_above="@+id/more_info_button"
-                android:layout_marginBottom="@dimen/margin_8dp"
                 android:background="@color/divider"/>
 
             <Button
@@ -72,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:text="@string/button_label_more_info"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_text"

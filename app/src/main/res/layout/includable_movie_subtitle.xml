@@ -33,7 +33,7 @@
             tools:text="2016"/>
 
         <ImageView
-            android:id="@+id/star_icon"
+            android:id="@+id/calendar_icon"
             android:tint="@color/secondary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -11,8 +11,11 @@ import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
 import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.moviedb.utils.date.DateUtils;
 
 import java.util.Random;
+
+import butterknife.ButterKnife;
 
 /**
  *
@@ -29,17 +32,21 @@ public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerVie
 
     @Override
     public void bind(final MovieRecyclerViewHolder holder, final Movie item) {
+        ButterKnife.bind(holder, holder.getRoot());
         if (item != null) {
             holder.title.setText(item.getTitle());
-            holder.subTitle.setText(item.getOriginalLanguage());
+            holder.description.setText(item.getOverview());
+            holder.rating.setText(String.valueOf(item.getVoteAverage()));
+            holder.date.setText(DateUtils.getReleaseYear(item.getReleaseDate()));
         }
     }
 
     @Override
     public void reset(final MovieRecyclerViewHolder holder) {
-        holder.image.setImageDrawable(ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER));
         holder.title.setText("");
-        holder.subTitle.setText("");
+        holder.description.setText("");
+        holder.rating.setText("");
+        holder.date.setText("");
     }
 
     private Drawable getDrawable(final Integer resId) {
