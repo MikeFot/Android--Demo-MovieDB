@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/margin_8dp"
-    card_view:cardBackgroundColor="@color/window_background"
+    card_view:cardBackgroundColor="@color/window_background_alt"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:elevation="@dimen/medium_elevation">
 
@@ -17,20 +16,11 @@
         android:layout_margin="@dimen/dimen_margin_bottom_small"
         android:orientation="horizontal">
 
-        <com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout
-            android:id="@+id/poster_container"
+        <include
+            layout="@layout/includable_poster"
             android:layout_width="@dimen/movie_feed_poster_width_large"
             android:layout_height="wrap_content"
-            app:aspectRatio="@string/poster_aspect_ratio">
-
-            <ImageView
-                android:id="@+id/poster"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/darker_gray"
-                tools:src="@drawable/poster"/>
-        </com.michaelfotiadis.moviedb.ui.core.common.layouts.AspectRatioEnforcingLayout>
+            android:id="@+id/poster_container"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -2,6 +2,7 @@ package com.michaelfotiadis.moviedb.ui.components.people;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.michaelfotiadis.moviedb.R;
@@ -12,13 +13,19 @@ import butterknife.Bind;
 
 public final class PeopleRecyclerViewHolder extends BaseRecyclerViewHolder {
 
-    private static final int LAYOUT_ID = R.layout.list_item_two_lines_image;
-    @Bind(R.id.line1)
+    private static final int LAYOUT_ID = R.layout.list_item_person_overview;
+    @Bind(R.id.poster)
+    protected ImageView poster;
+    @Bind(R.id.title)
     protected TextView title;
-    @Bind(R.id.line2)
-    protected TextView subTitle;
-    @Bind(R.id.image)
-    protected ImageView image;
+    @Bind(R.id.movie_1)
+    protected RelativeLayout firstMovie;
+    @Bind(R.id.movie_2)
+    protected RelativeLayout secondMovie;
+    @Bind(R.id.movie_3)
+    protected RelativeLayout thirdMovie;
+    @Bind(R.id.more_info_button)
+    protected View moreInfoButton;
 
     public PeopleRecyclerViewHolder(final View view) {
         super(view);

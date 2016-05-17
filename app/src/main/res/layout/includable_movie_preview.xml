@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:background="@color/primary">
+
+    <include
+        android:id="@+id/poster_container"
+        layout="@layout/includable_poster"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_toRightOf="@id/poster_container"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:singleLine="false"
+            android:textColor="@color/primary_text"
+
+            tools:text="Batman v Superman: Dawn of Justice"/>
+
+        <include
+            android:id="@+id/layout_rating"
+            layout="@layout/includable_rating_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"/>
+
+        <include
+            android:id="@+id/layout_year"
+            layout="@layout/includable_year_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="@dimen/margin_4dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

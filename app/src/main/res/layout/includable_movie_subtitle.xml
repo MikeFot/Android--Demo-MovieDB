@@ -9,37 +9,18 @@
         android:id="@+id/genres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_8dp"
+        android:layout_toLeftOf="@+id/text_layout"
         android:gravity="center_vertical"
         android:singleLine="true"
         android:textColor="@color/secondary_text"
-        android:layout_marginRight="@dimen/margin_8dp"
-        android:layout_toLeftOf="@+id/text_layout"
         tools:text="Action, Adventure, Drama, Romance, Fantasy"/>
 
-    <LinearLayout
+    <include
         android:id="@id/text_layout"
+        layout="@layout/includable_year_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/date"
-            android:textColor="@color/secondary_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_8dp"
-            tools:text="2016"/>
-
-        <ImageView
-            android:id="@+id/calendar_icon"
-            android:tint="@color/secondary_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_date_range_black_18dp"/>
-    </LinearLayout>
-
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

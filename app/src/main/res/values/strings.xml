@@ -34,4 +34,5 @@
     <string name="button_label_more_info">More Info</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="poster_aspect_ratio">27:40</string>
+    <string name="poster_aspect_horizontal_ratio">40:22.6</string>
 </resources>
