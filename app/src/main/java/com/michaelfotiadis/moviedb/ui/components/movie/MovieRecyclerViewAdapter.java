@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.michaelfotiadis.moviedb.common.models.movies.Movie;
+import com.michaelfotiadis.moviedb.data.model.UiMovie;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.adapter.BaseRecyclerViewAdapter;
 import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  *
  */
-public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<Movie, MovieRecyclerViewHolder> {
+public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<UiMovie, MovieRecyclerViewHolder> {
 
     private final MovieRecyclerBinder mBinder;
 
@@ -33,8 +34,8 @@ public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<Movie, Mov
     }
 
     @Override
-    protected boolean isItemValid(final Movie item) {
-        return item != null && item.getId() != null;
+    protected boolean isItemValid(final UiMovie item) {
+        return item != null;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class MovieRecyclerViewAdapter extends BaseRecyclerViewAdapter<Movie, Mov
     public void onBindViewHolder(final MovieRecyclerViewHolder holder,
                                  final int position) {
 
-        final Movie item = getItem(position);
+        final UiMovie item = getItem(position);
 
         mBinder.bind(holder, item);
 

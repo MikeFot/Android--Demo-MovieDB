@@ -16,8 +16,5 @@ public interface ImageFetcher {
 
     void loadIntoImageView(final int resId, final int placeholder, final ImageView imageView);
 
-    void loadPoster(String path,
-                    ImageView imageView);
-
     void loadIntoImageView(final String imagePath, final ImageView imageView);
 }

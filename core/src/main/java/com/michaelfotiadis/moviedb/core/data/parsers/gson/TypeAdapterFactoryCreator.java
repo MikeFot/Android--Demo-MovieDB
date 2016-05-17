@@ -14,6 +14,14 @@ import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.common.models.movies.MovieImpl;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainerImpl;
+import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetails;
+import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetailsImpl;
+import com.michaelfotiadis.moviedb.common.models.movies.details.ProductionCompany;
+import com.michaelfotiadis.moviedb.common.models.movies.details.ProductionCompanyImpl;
+import com.michaelfotiadis.moviedb.common.models.movies.details.ProductionCountry;
+import com.michaelfotiadis.moviedb.common.models.movies.details.ProductionCountryImpl;
+import com.michaelfotiadis.moviedb.common.models.movies.details.SpokenLanguage;
+import com.michaelfotiadis.moviedb.common.models.movies.details.SpokenLanguageImpl;
 import com.michaelfotiadis.moviedb.common.models.people.KnownFor;
 import com.michaelfotiadis.moviedb.common.models.people.KnownForImpl;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
@@ -51,6 +59,10 @@ import java.util.Set;
         adapters.add(create(Configuration.class, ConfigurationImpl.class));
         adapters.add(create(Genre.class, GenreImpl.class));
         adapters.add(create(GenreContainer.class, GenreContainerImpl.class));
+        adapters.add(create(MovieDetails.class, MovieDetailsImpl.class));
+        adapters.add(create(ProductionCompany.class, ProductionCompanyImpl.class));
+        adapters.add(create(ProductionCountry.class, ProductionCountryImpl.class));
+        adapters.add(create(SpokenLanguage.class, SpokenLanguageImpl.class));
 
     }
 

@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.michaelfotiadis.moviedb.R;
-import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.data.error.UiDataLoadError;
 import com.michaelfotiadis.moviedb.data.loader.DataFeedLoaderCallback;
-import com.michaelfotiadis.moviedb.data.loader.MovieLoader;
+import com.michaelfotiadis.moviedb.data.loader.UiMovieLoader;
+import com.michaelfotiadis.moviedb.data.model.UiMovie;
 import com.michaelfotiadis.moviedb.ui.core.common.error.errorpage.QuoteOnClickListenerWrapper;
 import com.michaelfotiadis.moviedb.ui.core.common.fragment.BaseFragment;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.manager.RecyclerManager;
@@ -33,7 +33,7 @@ public class MovieFeedFragment extends BaseFragment {
 
     @Bind(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
-    private RecyclerManager<Movie> mRecyclerManager;
+    private RecyclerManager<UiMovie> mRecyclerManager;
 
     public static Fragment newInstance() {
         return new MovieFeedFragment();
@@ -83,9 +83,10 @@ public class MovieFeedFragment extends BaseFragment {
     }
 
     private void loadData() {
-        final MovieLoader loader = new MovieLoader(getActivity());
 
-        loader.setCallback(new DataFeedLoaderCallback<Movie>() {
+        final UiMovieLoader loader = new UiMovieLoader(getActivity());
+
+        loader.setCallback(new DataFeedLoaderCallback<UiMovie>() {
             @Override
             public void onError(final UiDataLoadError error) {
                 AppLog.e(String.format("Error %s", error));
@@ -93,13 +94,13 @@ public class MovieFeedFragment extends BaseFragment {
             }
 
             @Override
-            public void onSuccess(final List<Movie> items) {
-                AppLog.d(String.format("Loaded %d movies", items.size()));
+            public void onSuccess(final List<UiMovie> items) {
+                AppLog.d(String.format("Loaded %d Ui movies", items.size()));
                 mRecyclerManager.clearError();
                 mRecyclerManager.setItems(items);
             }
         });
-        AppLog.d("Loading Movies");
+        AppLog.d("Loading UiMovies");
         loader.loadData();
     }
 

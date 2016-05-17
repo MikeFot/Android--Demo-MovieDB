@@ -7,11 +7,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
 import com.michaelfotiadis.moviedb.R;
-import com.michaelfotiadis.moviedb.common.models.movies.Movie;
+import com.michaelfotiadis.moviedb.data.model.UiMovie;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
 import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
-import com.michaelfotiadis.moviedb.utils.date.DateUtils;
 
 import java.util.Random;
 
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  *
  */
-public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerViewHolder, Movie> {
+public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerViewHolder, UiMovie> {
 
     private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_movie;
 
@@ -31,15 +30,16 @@ public class MovieRecyclerBinder extends BaseRecyclerViewBinder<MovieRecyclerVie
     }
 
     @Override
-    public void bind(final MovieRecyclerViewHolder holder, final Movie item) {
+    public void bind(final MovieRecyclerViewHolder holder, final UiMovie item) {
         ButterKnife.bind(holder, holder.getRoot());
         if (item != null) {
             holder.title.setText(item.getTitle());
-            holder.description.setText(item.getOverview());
-            holder.rating.setText(String.valueOf(item.getVoteAverage()));
-            holder.date.setText(DateUtils.getReleaseYear(item.getReleaseDate()));
-            getImageFetcher().loadPoster(
-                    item.getBackdropPath(),
+            holder.description.setText(item.getDescription());
+            holder.rating.setText(item.getRating());
+            holder.date.setText(item.getYear());
+            holder.genres.setText(item.getGenres());
+            getImageFetcher().loadIntoImageView(
+                    item.getPosterUrl(),
                     holder.poster
             );
         }

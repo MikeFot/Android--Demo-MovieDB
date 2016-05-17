@@ -1,12 +1,14 @@
 package com.michaelfotiadis.moviedb.data.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+
+import com.michaelfotiadis.moviedb.common.models.base.AppModel;
+import com.michaelfotiadis.moviedb.common.models.base.WithLongId;
 
 /**
  *
  */
-public class UiMovie implements Parcelable {
+public class UiMovie implements AppModel, WithLongId {
 
     public static final Creator<UiMovie> CREATOR = new Creator<UiMovie>() {
         @Override
@@ -19,6 +21,7 @@ public class UiMovie implements Parcelable {
             return new UiMovie[size];
         }
     };
+    private final Long id;
     private final String posterUrl;
     private final String title;
     private final String year;
@@ -28,6 +31,7 @@ public class UiMovie implements Parcelable {
 
     private UiMovie(final Builder builder) {
         description = builder.description;
+        id = builder.id;
         posterUrl = builder.posterUrl;
         title = builder.title;
         year = builder.year;
@@ -36,6 +40,7 @@ public class UiMovie implements Parcelable {
     }
 
     protected UiMovie(final Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
         this.posterUrl = in.readString();
         this.title = in.readString();
         this.year = in.readString();
@@ -51,12 +56,37 @@ public class UiMovie implements Parcelable {
     public static Builder newBuilder(final UiMovie copy) {
         final Builder builder = new Builder();
         builder.description = copy.description;
+        builder.id = copy.id;
         builder.posterUrl = copy.posterUrl;
         builder.title = copy.title;
         builder.year = copy.year;
         builder.rating = copy.rating;
         builder.genres = copy.genres;
         return builder;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getYear() {
+        return year;
     }
 
     @Override
@@ -66,6 +96,7 @@ public class UiMovie implements Parcelable {
 
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
+        dest.writeValue(this.id);
         dest.writeString(this.posterUrl);
         dest.writeString(this.title);
         dest.writeString(this.year);
@@ -74,8 +105,14 @@ public class UiMovie implements Parcelable {
         dest.writeString(this.genres);
     }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
     public static final class Builder {
         private String description;
+        private Long id;
         private String posterUrl;
         private String title;
         private String year;
@@ -87,6 +124,11 @@ public class UiMovie implements Parcelable {
 
         public Builder withDescription(final String val) {
             description = val;
+            return this;
+        }
+
+        public Builder withId(final Long val) {
+            id = val;
             return this;
         }
 

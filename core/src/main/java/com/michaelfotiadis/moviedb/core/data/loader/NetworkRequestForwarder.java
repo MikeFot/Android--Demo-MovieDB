@@ -3,6 +3,7 @@ package com.michaelfotiadis.moviedb.core.data.loader;
 import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
 import com.michaelfotiadis.moviedb.common.models.genre.GenreContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
+import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetails;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
 import com.michaelfotiadis.moviedb.core.data.rest.CoreRestClient;
@@ -25,6 +26,11 @@ import retrofit.Callback;
 
     public void forwardGetPopularMovies(final Callback<MoviesContainer> retrofitCallback) {
         mRestClient.getMoviesApi().getPopularMovies(mApiKey, retrofitCallback);
+    }
+
+    public void forwardGetMovieById(final String id,
+                                    final Callback<MovieDetails> retrofitCallback) {
+        mRestClient.getMoviesApi().getMovieById(id, mApiKey, retrofitCallback);
     }
 
     public void forwardGetPopularPeople(final Callback<PeopleContainer> retrofitCallback) {
