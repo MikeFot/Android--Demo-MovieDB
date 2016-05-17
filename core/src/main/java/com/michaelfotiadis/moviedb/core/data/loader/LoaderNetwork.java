@@ -2,6 +2,7 @@ package com.michaelfotiadis.moviedb.core.data.loader;
 
 
 import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
+import com.michaelfotiadis.moviedb.common.models.genre.GenreContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
@@ -116,6 +117,56 @@ public class LoaderNetwork {
 
                 final ValidationResult validationResult = new ValidatorProcessorImpl()
                         .getValidator(Configuration.class)
+                        .validate(result);
+                if (validationResult.isValid()) {
+                    masterCallback.onSuccess(CommonDeliverable.from(result));
+                } else {
+                    masterCallback.onFailure(validationResult.getError());
+                }
+
+            }
+
+            @Override
+            public void failure(final RetrofitError error) {
+                masterCallback.onFailure(LoaderUtils.getErrorFromRetrofit(error));
+            }
+        });
+
+    }
+
+    protected void getMovieGenres(final CommonCallback<GenreContainer> masterCallback) {
+
+        mRequestForwarder.forwardGetMovieGenres(new Callback<GenreContainer>() {
+            @Override
+            public void success(final GenreContainer result, final Response response) {
+
+                final ValidationResult validationResult = new ValidatorProcessorImpl()
+                        .getValidator(GenreContainer.class)
+                        .validate(result);
+                if (validationResult.isValid()) {
+                    masterCallback.onSuccess(CommonDeliverable.from(result));
+                } else {
+                    masterCallback.onFailure(validationResult.getError());
+                }
+
+            }
+
+            @Override
+            public void failure(final RetrofitError error) {
+                masterCallback.onFailure(LoaderUtils.getErrorFromRetrofit(error));
+            }
+        });
+
+    }
+
+    protected void getTvGenres(final CommonCallback<GenreContainer> masterCallback) {
+
+        mRequestForwarder.forwardGetTvGenres(new Callback<GenreContainer>() {
+            @Override
+            public void success(final GenreContainer result, final Response response) {
+
+                final ValidationResult validationResult = new ValidatorProcessorImpl()
+                        .getValidator(GenreContainer.class)
                         .validate(result);
                 if (validationResult.isValid()) {
                     masterCallback.onSuccess(CommonDeliverable.from(result));

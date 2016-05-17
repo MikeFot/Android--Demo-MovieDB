@@ -3,6 +3,7 @@ package com.michaelfotiadis.moviedb.core.data.rest;
 import com.google.gson.Gson;
 import com.michaelfotiadis.moviedb.core.DemoCore;
 import com.michaelfotiadis.moviedb.core.data.api.GetConfigurationApi;
+import com.michaelfotiadis.moviedb.core.data.api.GetGenresApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetMoviesApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetPeopleApi;
 import com.michaelfotiadis.moviedb.core.data.api.GetTvSeriesApi;
@@ -42,6 +43,11 @@ public final class CoreRestClientImpl implements CoreRestClient {
         }
     }
 
+    @Override
+    public synchronized GetMoviesApi getMoviesApi() {
+        validateApiStore();
+        return mApiStore.getMoviesApi();
+    }
 
     private void validateApiStore() {
         final boolean recreate;
@@ -62,12 +68,6 @@ public final class CoreRestClientImpl implements CoreRestClient {
     }
 
     @Override
-    public synchronized GetMoviesApi getMoviesApi() {
-        validateApiStore();
-        return mApiStore.getMoviesApi();
-    }
-
-    @Override
     public synchronized GetPeopleApi getPeopleApi() {
         validateApiStore();
         return mApiStore.getPeopleApi();
@@ -83,5 +83,11 @@ public final class CoreRestClientImpl implements CoreRestClient {
     public synchronized GetConfigurationApi getConfigurationApi() {
         validateApiStore();
         return mApiStore.getConfigurationApi();
+    }
+
+    @Override
+    public synchronized GetGenresApi getGenresApi() {
+        validateApiStore();
+        return mApiStore.getGenresApi();
     }
 }

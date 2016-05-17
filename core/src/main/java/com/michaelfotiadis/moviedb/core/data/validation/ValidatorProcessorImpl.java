@@ -2,6 +2,8 @@ package com.michaelfotiadis.moviedb.core.data.validation;
 
 import com.michaelfotiadis.moviedb.common.models.base.AppModel;
 import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
+import com.michaelfotiadis.moviedb.common.models.genre.Genre;
+import com.michaelfotiadis.moviedb.common.models.genre.GenreContainer;
 import com.michaelfotiadis.moviedb.common.models.guest.GuestSession;
 import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
@@ -11,6 +13,8 @@ import com.michaelfotiadis.moviedb.common.models.people.Person;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.ConfigurationValidator;
+import com.michaelfotiadis.moviedb.core.data.validation.validators.GenreContainerValidator;
+import com.michaelfotiadis.moviedb.core.data.validation.validators.GenreValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.GuestSessionValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.KnownForValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.MovieValidator;
@@ -44,6 +48,8 @@ public final class ValidatorProcessorImpl implements ValidatorProcessor {
         mValidators.put(TvSeries.class, new TvSeriesValidator());
         mValidators.put(TvSeriesContainer.class, new TvSeriesContainerValidator());
         mValidators.put(Configuration.class, new ConfigurationValidator());
+        mValidators.put(GenreContainer.class, new GenreContainerValidator());
+        mValidators.put(Genre.class, new GenreValidator());
 
     }
 

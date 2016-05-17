@@ -1,6 +1,7 @@
 package com.michaelfotiadis.moviedb.core.data.loader;
 
 import com.michaelfotiadis.moviedb.common.models.configuration.Configuration;
+import com.michaelfotiadis.moviedb.common.models.genre.GenreContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
@@ -36,6 +37,14 @@ import retrofit.Callback;
 
     public void forwardGetConfiguration(final Callback<Configuration> retrofitCallback) {
         mRestClient.getConfigurationApi().getConfiguration(mApiKey, retrofitCallback);
+    }
+
+    public void forwardGetMovieGenres(final Callback<GenreContainer> retrofitCallback) {
+        mRestClient.getGenresApi().getMovieGenres(mApiKey, retrofitCallback);
+    }
+
+    public void forwardGetTvGenres(final Callback<GenreContainer> retrofitCallback) {
+        mRestClient.getGenresApi().getTvGenres(mApiKey, retrofitCallback);
     }
 
 }
