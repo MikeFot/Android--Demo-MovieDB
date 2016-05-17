@@ -17,4 +17,6 @@
     <dimen name="fab_border">0dp</dimen>
     <dimen name="small_elevation">6dp</dimen>
     <dimen name="dimen_margin_bottom_small">4dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="divider_height">2dp</dimen>
 </resources>

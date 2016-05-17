@@ -30,7 +30,6 @@ import butterknife.ButterKnife;
  */
 public class TvSeriesFeedFragment extends BaseFragment {
 
-
     @Bind(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
     private RecyclerManager<TvSeries> mRecyclerManager;
