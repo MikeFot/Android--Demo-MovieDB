@@ -7,15 +7,15 @@ import android.os.Parcel;
  */
 public class UiMediaImpl implements UiMedia {
 
-    public static final Creator<UiMedia> CREATOR = new Creator<UiMedia>() {
+    public static final Creator<UiMediaImpl> CREATOR = new Creator<UiMediaImpl>() {
         @Override
-        public UiMedia createFromParcel(final Parcel source) {
+        public UiMediaImpl createFromParcel(final Parcel source) {
             return new UiMediaImpl(source);
         }
 
         @Override
-        public UiMedia[] newArray(final int size) {
-            return new UiMedia[size];
+        public UiMediaImpl[] newArray(final int size) {
+            return new UiMediaImpl[size];
         }
     };
     private final Long id;
@@ -25,6 +25,7 @@ public class UiMediaImpl implements UiMedia {
     private final String rating;
     private final String description;
     private final String genres;
+    private final UiMediaType type;
 
     private UiMediaImpl(final Builder builder) {
         description = builder.description;
@@ -34,6 +35,7 @@ public class UiMediaImpl implements UiMedia {
         year = builder.year;
         rating = builder.rating;
         genres = builder.genres;
+        type = builder.type;
     }
 
     protected UiMediaImpl(final Parcel in) {
@@ -44,22 +46,30 @@ public class UiMediaImpl implements UiMedia {
         this.rating = in.readString();
         this.description = in.readString();
         this.genres = in.readString();
+        final int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : UiMediaType.values()[tmpType];
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(final UiMediaImpl copy) {
+    public static Builder newBuilder(final UiMedia copy) {
         final Builder builder = new Builder();
-        builder.description = copy.description;
-        builder.id = copy.id;
-        builder.posterUrl = copy.posterUrl;
-        builder.title = copy.title;
-        builder.year = copy.year;
-        builder.rating = copy.rating;
-        builder.genres = copy.genres;
+        builder.description = copy.getDescription();
+        builder.id = copy.getId();
+        builder.posterUrl = copy.getPosterUrl();
+        builder.title = copy.getTitle();
+        builder.year = copy.getYear();
+        builder.rating = copy.getRating();
+        builder.genres = copy.getGenres();
+        builder.type = copy.getType();
         return builder;
+    }
+
+    @Override
+    public UiMediaType getType() {
+        return type;
     }
 
     @Override
@@ -93,6 +103,11 @@ public class UiMediaImpl implements UiMedia {
     }
 
     @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -106,11 +121,7 @@ public class UiMediaImpl implements UiMedia {
         dest.writeString(this.rating);
         dest.writeString(this.description);
         dest.writeString(this.genres);
-    }
-
-    @Override
-    public Long getId() {
-        return id;
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
     }
 
     public static final class Builder {
@@ -121,6 +132,7 @@ public class UiMediaImpl implements UiMedia {
         private String year;
         private String rating;
         private String genres;
+        private UiMediaType type;
 
         private Builder() {
         }
@@ -157,6 +169,11 @@ public class UiMediaImpl implements UiMedia {
 
         public Builder withGenres(final String val) {
             genres = val;
+            return this;
+        }
+
+        public Builder withType(final UiMediaType val) {
+            type = val;
             return this;
         }
 

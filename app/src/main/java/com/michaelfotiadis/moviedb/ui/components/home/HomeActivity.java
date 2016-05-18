@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -117,6 +116,8 @@ public class HomeActivity extends BaseActivity {
         MenuItemCompat.setActionView(mSearchMenu, mSearchView);
         mSearchView.setQueryHint(getString(R.string.hint_search));
         // Add a OnQueryTextListener
+
+
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
@@ -147,14 +148,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void submitQuery(final String query) {
-
-        if (!TextUtils.isEmpty(query)) {
-            AppLog.d("Search " + query);
-
-            if (getCurrentFragment() instanceof Searchable) {
-                AppLog.d("Submitting query to fragment: " + query);
-                ((Searchable) getCurrentFragment()).setFilter(query);
-            }
+        if (getCurrentFragment() instanceof Searchable) {
+            AppLog.d("Submitting query to fragment: " + query);
+            ((Searchable) getCurrentFragment()).setFilter(query);
         }
     }
 

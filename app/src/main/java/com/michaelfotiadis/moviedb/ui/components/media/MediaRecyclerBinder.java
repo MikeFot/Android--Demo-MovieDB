@@ -5,9 +5,11 @@ import android.view.View;
 
 import com.michaelfotiadis.moviedb.R;
 import com.michaelfotiadis.moviedb.data.model.UiMedia;
+import com.michaelfotiadis.moviedb.data.model.UiMediaType;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.viewbinder.BaseRecyclerViewBinder;
 import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
+import com.michaelfotiadis.moviedb.utils.AppLog;
 
 import butterknife.ButterKnife;
 
@@ -42,7 +44,13 @@ public class MediaRecyclerBinder extends BaseRecyclerViewBinder<MediaRecyclerVie
             holder.moreInfoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    getIntentDispatcher().openMovieDetailsActivity(holder.poster, String.valueOf(item.getId()));
+
+                    if (item.getType().equals(UiMediaType.MOVIE)) {
+
+                        getIntentDispatcher().openMovieDetailsActivity(holder.poster, String.valueOf(item.getId()));
+                    } else {
+                        AppLog.w("Not implemented yet");
+                    }
                 }
             });
 
@@ -56,7 +64,6 @@ public class MediaRecyclerBinder extends BaseRecyclerViewBinder<MediaRecyclerVie
         holder.rating.setText("");
         holder.date.setText("");
     }
-
 
 }
 

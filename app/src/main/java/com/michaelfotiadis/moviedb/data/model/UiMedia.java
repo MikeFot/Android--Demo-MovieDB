@@ -7,6 +7,8 @@ import com.michaelfotiadis.moviedb.common.models.base.app.WithLongId;
  *
  */
 public interface UiMedia extends AppModel, WithLongId {
+    UiMediaType getType();
+
     String getDescription();
 
     String getGenres();

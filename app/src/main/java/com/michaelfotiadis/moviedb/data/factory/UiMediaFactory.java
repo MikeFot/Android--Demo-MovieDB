@@ -2,9 +2,12 @@ package com.michaelfotiadis.moviedb.data.factory;
 
 import com.michaelfotiadis.moviedb.common.models.base.Media;
 import com.michaelfotiadis.moviedb.common.models.genre.Genre;
+import com.michaelfotiadis.moviedb.common.models.movies.Movie;
+import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
 import com.michaelfotiadis.moviedb.core.DemoCore;
 import com.michaelfotiadis.moviedb.data.model.UiMedia;
 import com.michaelfotiadis.moviedb.data.model.UiMediaImpl;
+import com.michaelfotiadis.moviedb.data.model.UiMediaType;
 import com.michaelfotiadis.moviedb.utils.AppLog;
 import com.michaelfotiadis.moviedb.utils.date.DateUtils;
 
@@ -24,6 +27,16 @@ public class UiMediaFactory<T extends Media> {
         mUiMedia.clear();
 
         for (final T media : mMediaList) {
+
+            final UiMediaType type;
+            if (media instanceof Movie) {
+                type = UiMediaType.MOVIE;
+            } else if (media instanceof TvSeries) {
+                type = UiMediaType.TV_SERIES;
+            } else {
+                type = UiMediaType.UNKNOWN;
+            }
+
             mUiMedia.add(UiMediaImpl.newBuilder()
                     .withId(media.getId())
                     .withDescription(media.getOverview())
@@ -32,6 +45,7 @@ public class UiMediaFactory<T extends Media> {
                     .withGenres(buildGenreText(media.getGenreIds(), mGenres))
                     .withPosterUrl(buildUrl(media.getPosterPath()))
                     .withRating(String.valueOf(media.getVoteAverage()))
+                    .withType(type)
                     .build());
 
         }
