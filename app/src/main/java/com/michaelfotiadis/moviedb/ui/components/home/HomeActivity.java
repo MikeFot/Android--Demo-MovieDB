@@ -4,7 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.michaelfotiadis.moviedb.R;
@@ -12,10 +18,12 @@ import com.michaelfotiadis.moviedb.ui.components.movie.MovieFeedFragment;
 import com.michaelfotiadis.moviedb.ui.components.people.PeopleFeedFragment;
 import com.michaelfotiadis.moviedb.ui.components.tv.TvSeriesFeedFragment;
 import com.michaelfotiadis.moviedb.ui.core.common.activity.BaseActivity;
+import com.michaelfotiadis.moviedb.ui.core.common.fragment.Searchable;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerAdapter;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerBinder;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerPage;
 import com.michaelfotiadis.moviedb.ui.core.common.viewpager.SmartFragmentPagerPages;
+import com.michaelfotiadis.moviedb.utils.AppLog;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,16 +34,17 @@ public class HomeActivity extends BaseActivity {
     private static final int LAYOUT_ID = R.layout.activity_default_view_pager;
 
     private static final int OFF_PAGE_LIMIT = 2;
-
-    public static Intent getInstance(final Context context) {
-        return new Intent(context, HomeActivity.class);
-    }
-
-
     @Bind(R.id.view_pager)
     protected ViewPager mPager;
     @Bind(R.id.tabs)
     protected TabLayout mTabLayout;
+    private SmartFragmentPagerAdapter mAdapter;
+    private SearchView mSearchView;
+    private MenuItem mSearchMenu;
+
+    public static Intent getInstance(final Context context) {
+        return new Intent(context, HomeActivity.class);
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -47,7 +56,7 @@ public class HomeActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         final SmartFragmentPagerPages pages = getPages();
-        final SmartFragmentPagerAdapter mAdapter = new SmartFragmentPagerAdapter(getSupportFragmentManager());
+        mAdapter = new SmartFragmentPagerAdapter(getSupportFragmentManager());
         mAdapter.setFragments(pages);
         mPager.setAdapter(mAdapter);
         mPager.setOffscreenPageLimit(OFF_PAGE_LIMIT);
@@ -96,4 +105,60 @@ public class HomeActivity extends BaseActivity {
         return pages;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        mSearchMenu = menu.findItem(R.id.action_search);
+
+        // Initialise the searchview
+        mSearchView = new SearchView(this.getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(mSearchMenu, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(mSearchMenu, mSearchView);
+        mSearchView.setQueryHint(getString(R.string.hint_search));
+        // Add a OnQueryTextListener
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+                submitQuery(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(final String searchText) {
+                submitQuery(searchText);
+                return false;
+            }
+        });
+
+        // Add an expand listener
+        MenuItemCompat.setOnActionExpandListener(mSearchMenu, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(final MenuItem item) {
+                return true; // Return true to expand action view
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(final MenuItem item) {
+                return true; // Return true to collapse action view
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void submitQuery(final String query) {
+
+        if (!TextUtils.isEmpty(query)) {
+            AppLog.d("Search " + query);
+
+            if (getCurrentFragment() instanceof Searchable) {
+                AppLog.d("Submitting query to fragment: " + query);
+                ((Searchable) getCurrentFragment()).setFilter(query);
+            }
+        }
+    }
+
+    private Fragment getCurrentFragment() {
+        return mAdapter.getItem(mPager.getCurrentItem());
+    }
 }

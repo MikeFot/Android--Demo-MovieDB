@@ -17,12 +17,14 @@ import com.michaelfotiadis.moviedb.data.model.UiMedia;
 import com.michaelfotiadis.moviedb.ui.components.media.MediaRecyclerViewAdapter;
 import com.michaelfotiadis.moviedb.ui.core.common.error.errorpage.QuoteOnClickListenerWrapper;
 import com.michaelfotiadis.moviedb.ui.core.common.fragment.BaseFragment;
+import com.michaelfotiadis.moviedb.ui.core.common.fragment.Searchable;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.manager.RecyclerManager;
 import com.michaelfotiadis.moviedb.ui.core.common.viewmanagement.SimpleUiStateKeeper;
 import com.michaelfotiadis.moviedb.ui.core.common.viewmanagement.UiStateKeeper;
 import com.michaelfotiadis.moviedb.utils.AppLog;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  *
  */
-public class MovieFeedFragment extends BaseFragment {
+public class MovieFeedFragment extends BaseFragment implements Searchable {
 
     @Bind(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
@@ -96,7 +98,7 @@ public class MovieFeedFragment extends BaseFragment {
 
             @Override
             public void onSuccess(final List<UiMedia> items) {
-                AppLog.d(String.format("Loaded %d Ui movies", items.size()));
+                AppLog.d(String.format(Locale.UK, "Loaded %d Ui movies", items.size()));
                 mRecyclerManager.clearError();
                 mRecyclerManager.setItems(items);
             }
@@ -119,4 +121,8 @@ public class MovieFeedFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void setFilter(final String filter) {
+        AppLog.d("Fragment got filter " + filter);
+    }
 }
