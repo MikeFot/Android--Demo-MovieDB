@@ -18,19 +18,21 @@ The application is using 3 modules:
 * **dev** using the debug proxy
 * **mock** using the mock server
 ### Data Fetching ###
-* **core** is using Retrofit internally with GSON deserialisation
+* **core** is using Retrofit internally with GSON deserialisation. All app models are represented by interfaces and are paired with their implementations during GSON initialisation.
 * **app** is using an abstract data loader which converts several of the models to UI objects which hide API implementation 
 
 * Retrieved server configuration is stored in a shared preference. This is done in order to store the Base Image URL before starting the application proper.
 * All network data loading is done in a background thread. UI loaders will run the success / error result on the UI thread automatically.
-* UI loaders take care of chaining the request to a Data Provider who chains the request to a network loader for separation of concerns.
+* UI loaders take care of chaining the request to a Data Provider (acts as a facade) who chains the request to a network loader for separation of concerns.
 * Data retrieved from the network gets validated through a generic ValidatorProcessor who picks the correct Validator for each Class type and produces a ValidationResult.
 * Backend errors are converted to custom UI errors through an internal converter.
 
 ## App ##
 
 ### Components ###
-All base components are organised in a separate package for reusability.
+* All base components are organised in a separate package for reusability.
+* Application class inititalises the **Core module singleton** for access to the Data Provider and **Crasylytics** controller.
+* Activities and Fragments keep a reference to an **Intent Dispatcher** and an **Image Fetcher** (Picasso Singleton) which they provide to their view binders.
 
 ### Splash Screen ###
 Configuration is being retrieved from the server during the splash screen. Shows a progress bar and a movie quote.
@@ -51,7 +53,7 @@ All Fragments implement a Searchable interface and are using a custom Searcher. 
 ![Screenshot_20160518-134534.png](https://bitbucket.org/repo/gBjXLM/images/1023503257-Screenshot_20160518-134534.png)
 
 ### Movie Feed Fragment ###
-Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines Movies with Genres through a factory.
+Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines Movies with Genres through a factory. Uses an AutoFitLayout for genres.
 
 ![Screenshot_20160518-134512.png](https://bitbucket.org/repo/gBjXLM/images/4005901145-Screenshot_20160518-134512.png)
 
@@ -77,8 +79,11 @@ Activity with a Collapsing Layout and a Fragment. Reusing the Movie Details infr
 ![Screenshot_20160518-143733.png](https://bitbucket.org/repo/gBjXLM/images/431905170-Screenshot_20160518-143733.png)
 ![Screenshot_20160518-143746.png](https://bitbucket.org/repo/gBjXLM/images/3351930293-Screenshot_20160518-143746.png)
 
-# Known Issues #
-* Collapsing bar layout will not scroll properly in the case of a lot of details. I can fix this, but it will be good enough for the demo.
+## Unit Tests ##
+Several utility classes have been unit tested. Time constraints did not allow for further testing. 
 
-# Stretch Goals #
+## Known Issues ##
+* Collapsing bar layout will not scroll properly in the case of a lot of details. It can be fixed, but time constraints did not allow me to address the issue.
+
+## Stretch Goals ##
 * UI should only show UI models and should not be aware of back-end implementations for separation of concerns.
