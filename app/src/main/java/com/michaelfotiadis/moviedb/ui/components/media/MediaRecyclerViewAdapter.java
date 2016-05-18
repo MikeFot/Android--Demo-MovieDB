@@ -20,11 +20,6 @@ public class MediaRecyclerViewAdapter extends BaseRecyclerViewAdapter<UiMedia, M
 
     private final MediaRecyclerBinder mBinder;
 
-    public MediaRecyclerViewAdapter(final Activity activity) {
-        super(activity);
-        mBinder = new MediaRecyclerBinder(activity, getImageFetcher(), getIntentDispatcher());
-    }
-
     public MediaRecyclerViewAdapter(final Activity activity,
                                     final ImageFetcher imageFetcher,
                                     final IntentDispatcher intentDispatcher) {

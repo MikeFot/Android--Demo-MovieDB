@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarLayout"
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,6 +18,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <include
+                android:id="@+id/header_layout"
                 layout="@layout/includable_base_details_header"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -31,20 +32,33 @@
                 app:layout_collapseMode="pin"/>
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_below="@id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:background="@color/window_background"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_padding_small"
+                tools:background="@color/window_background">
+            </LinearLayout>
+
+            <include
+                android:id="@+id/error_layout"
+                layout="@layout/includable_default_error_page"/>
+
+            <include
+                android:id="@+id/cm_std_progress"
+                layout="@layout/includable_progress"
+                android:clickable="true"/>
+
+        </ViewFlipper>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/app_bar_layout"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_padding_small"
-        tools:background="@color/window_background">
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

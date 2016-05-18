@@ -1,10 +1,6 @@
 package com.michaelfotiadis.moviedb.ui.components.people;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 
 import com.michaelfotiadis.moviedb.R;
@@ -18,14 +14,13 @@ import com.michaelfotiadis.moviedb.utils.AppLog;
 import com.michaelfotiadis.moviedb.utils.date.DateUtils;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  *
  */
 public class PeopleRecyclerBinder extends BaseRecyclerViewBinder<PeopleRecyclerViewHolder, Person> {
 
-    private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_movie;
+    private static final int DEFAULT_IMAGE_PLACEHOLDER = R.drawable.ic_people;
 
     protected PeopleRecyclerBinder(final Context context,
                                    final ImageFetcher imageFetcher,
@@ -40,6 +35,7 @@ public class PeopleRecyclerBinder extends BaseRecyclerViewBinder<PeopleRecyclerV
             holder.title.setText(item.getName());
             getImageFetcher().loadIntoImageView(
                     buildUrl(item.getProfilePath()),
+                    DEFAULT_IMAGE_PLACEHOLDER,
                     holder.poster);
 
             if (item.getKnownFor().size() >= 3) {
@@ -76,18 +72,6 @@ public class PeopleRecyclerBinder extends BaseRecyclerViewBinder<PeopleRecyclerV
 //        holder.subTitle.setText("");
     }
 
-    private Drawable getDrawable(final Integer resId) {
-        final Drawable drawable;
-        if (resId == null) {
-            drawable = ActivityCompat.getDrawable(getContext(), DEFAULT_IMAGE_PLACEHOLDER);
-            final Random rnd = new Random();
-            final int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            DrawableCompat.setTint(drawable, color);
-        } else {
-            drawable = ActivityCompat.getDrawable(getContext(), resId);
-        }
-        return drawable;
-    }
 
     private static String buildUrl(final String path) {
         final String base = DemoCore.getImageBaseUrl();

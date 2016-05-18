@@ -9,6 +9,7 @@ import com.michaelfotiadis.moviedb.R;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.viewholder.BaseRecyclerViewHolder;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 public final class MediaRecyclerViewHolder extends BaseRecyclerViewHolder {
@@ -32,6 +33,7 @@ public final class MediaRecyclerViewHolder extends BaseRecyclerViewHolder {
 
     public MediaRecyclerViewHolder(final View view) {
         super(view);
+        ButterKnife.bind(this, view);
     }
 
     public static int getLayoutId() {

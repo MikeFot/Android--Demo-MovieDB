@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
 import com.michaelfotiadis.moviedb.ui.core.common.viewholder.BaseViewHolder;
+import com.michaelfotiadis.moviedb.ui.core.imagefetcher.ImageFetcher;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.moviedb.utils.view.ViewUtils;
 
@@ -14,10 +15,14 @@ import com.michaelfotiadis.moviedb.utils.view.ViewUtils;
 public abstract class BaseViewDataBinder<VH extends BaseViewHolder, D extends AppModel> {
 
     private final Context mContext;
+    private final ImageFetcher mImageFetcher;
     private final IntentDispatcher mIntentDispatcher;
 
-    protected BaseViewDataBinder(final Context context, final IntentDispatcher intentDispatcher) {
+    protected BaseViewDataBinder(final Context context,
+                                 final ImageFetcher imageFetcher,
+                                 final IntentDispatcher intentDispatcher) {
         this.mContext = context;
+        this.mImageFetcher = imageFetcher;
         this.mIntentDispatcher = intentDispatcher;
     }
 
@@ -27,6 +32,10 @@ public abstract class BaseViewDataBinder<VH extends BaseViewHolder, D extends Ap
 
     public IntentDispatcher getIntentDispatcher() {
         return mIntentDispatcher;
+    }
+
+    protected ImageFetcher getImageFetcher() {
+        return mImageFetcher;
     }
 
     public abstract void bind(final VH holder, final D item);

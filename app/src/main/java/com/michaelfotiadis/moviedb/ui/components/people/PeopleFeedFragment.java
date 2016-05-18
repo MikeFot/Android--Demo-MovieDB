@@ -50,7 +50,13 @@ public class PeopleFeedFragment extends BaseFragment implements Searchable {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_default_recycler, container, false);
+        return inflater.inflate(R.layout.fragment_default_recycler, container, false);
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         ButterKnife.bind(this, view);
 
         final UiStateKeeper uiStateKeeper = new SimpleUiStateKeeper(view, mRecyclerView);
@@ -64,7 +70,6 @@ public class PeopleFeedFragment extends BaseFragment implements Searchable {
                 .setEmptyMessage(getString(R.string.friendly_error_no_data))
                 .build();
 
-        return view;
     }
 
     @Override

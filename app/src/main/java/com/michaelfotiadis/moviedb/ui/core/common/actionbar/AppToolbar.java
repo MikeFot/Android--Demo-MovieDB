@@ -54,6 +54,7 @@ public class AppToolbar implements AppActionBar {
     @Override
     public void goTransparent() {
         mToolbar.setBackgroundColor(ContextCompat.getColor(mActivity, android.R.color.transparent));
+        mTitleTextView.setBackgroundColor(ContextCompat.getColor(mActivity, android.R.color.transparent));
     }
 
     @Override
