@@ -24,7 +24,7 @@ public class DateUtils {
             final Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
             return String.valueOf(calendar.get(Calendar.YEAR));
-        } catch (ParseException e) {
+        } catch (final ParseException e) {
             e.printStackTrace();
             return "";
         }

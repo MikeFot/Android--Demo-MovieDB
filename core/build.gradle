@@ -15,10 +15,6 @@ android {
 
     packagingOptions.excludes = getDefaultExcludes();
 
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
     defaultConfig {
         minSdkVersion minSdkRed
         targetSdkVersion targetSdk
