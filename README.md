@@ -21,5 +21,35 @@ The application is using 3 modules:
 * **core** is using Retrofit internally with GSON deserialisation
 * **app** is using an abstract data loader which converts several of the models to UI objects which hide API implementation 
 
+## App ##
+
+### Components ###
+All base components are organised in a separate package for reusability.
+
+### Splash Screen ###
+Configuration is being retrieved from the server during the splash screen.
+![Screenshot_20160518-134603.png](https://bitbucket.org/repo/gBjXLM/images/1655290595-Screenshot_20160518-134603.png)
+
+### Error View ###
+Error view is randomly displaying movie quotes from an author and a quote array. Backend errors are converted to custom UI errors.
+IF the error is recoverable, it will show a Try Again button.
+![Screenshot_20160518-134554.png](https://bitbucket.org/repo/gBjXLM/images/2862971167-Screenshot_20160518-134554.png)
+
+### Home Activity ###
+This is using a view pager with icons as tab names.
+All Fragments implement a Searchable interface and are using a custom Searcher. They can be searched for multiple values such as name, year and genre.
+
+### Movie Feed Fragment ###
+Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines Movies with Genres through a factory.
+![Screenshot_20160518-134512.png](https://bitbucket.org/repo/gBjXLM/images/4005901145-Screenshot_20160518-134512.png)
+
+### People Feed Fragment ###
+Recyclerview with cardviews.
+![Screenshot_20160518-134516.png](https://bitbucket.org/repo/gBjXLM/images/1488809604-Screenshot_20160518-134516.png)
+
+### Tv Series Feed Fragment ###
+Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines TvSeries with Genres through a factory.
+![Screenshot_20160518-134520.png](https://bitbucket.org/repo/gBjXLM/images/2904125364-Screenshot_20160518-134520.png)
+
 
 # Still in progress! #
