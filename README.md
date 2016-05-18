@@ -47,8 +47,9 @@ Components use a **StateKeeper** to handle their current state (loading, error, 
 ![Screenshot_20160518-134554.png](https://bitbucket.org/repo/gBjXLM/images/2862971167-Screenshot_20160518-134554.png)
 
 ### Home Activity ###
-This is using a view pager with icons as tab names.
-All Fragments implement a Searchable interface and are using a custom Searcher. They can be searched for multiple values such as name, year and genre.
+**ViewPager:** This is using a view pager with a Smart Fragment Pager Adapter with icons as tab names. Tab name will appear on the toolbar and has a short animation on switching.
+
+**Searching:** Fragments implement a Searchable interface and are using a custom Searcher class to handle queries. They can be searched for multiple values such as name, year and genre.
 
 ![Screenshot_20160518-134534.png](https://bitbucket.org/repo/gBjXLM/images/1023503257-Screenshot_20160518-134534.png)
 
