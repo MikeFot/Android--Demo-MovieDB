@@ -45,18 +45,6 @@ public final class DemoCore {
         // DO NOT INSTANTIATE
     }
 
-    /* package */
-    static DemoCore getInstance() {
-        if (sInstance == null) {
-            synchronized (LOCK) {
-                if (sInstance == null) {
-                    sInstance = new DemoCore();
-                }
-            }
-        }
-        return sInstance;
-    }
-
     public static synchronized void init(final Context applicationContext,
                                          final String apiKey,
                                          final String endpoint,
@@ -88,23 +76,28 @@ public final class DemoCore {
 
         getInstance().mPreferenceManager = new ConfigPreferenceManager(context);
 
-        CoreLog.d("Core Initialised with installation id " + getInstance().getInstallationId());
+        CoreLog.d("Core Initialised with installation id " + getInstallationId());
     }
 
-    public boolean isStrictModeEnabled() {
-        return mIsStrictModeEnabled;
+    /* package */
+    static DemoCore getInstance() {
+        if (sInstance == null) {
+            synchronized (LOCK) {
+                if (sInstance == null) {
+                    sInstance = new DemoCore();
+                }
+            }
+        }
+        return sInstance;
     }
 
-    /*package*/ String getInstallationId() {
-        if (mInstallationId != null) {
-            return mInstallationId;
+    /*package*/
+    static String getInstallationId() {
+        if (getInstance().mInstallationId != null) {
+            return getInstance().mInstallationId;
         } else {
             throw new IllegalStateException("Installation ID requested before initialising the SDK.");
         }
-    }
-
-    public static ConfigPreferenceManager getPreferenceManager() {
-        return getInstance().mPreferenceManager;
     }
 
     public static String getEndpoint() {
@@ -115,11 +108,27 @@ public final class DemoCore {
         return getInstance().mIsDebugEnabled;
     }
 
+    public static void setDebugEnabled(final boolean debugEnabled) {
+        getInstance().mIsDebugEnabled = debugEnabled;
+    }
+
     public static DataProvider getDataProvider() {
         return getInstance().mDataProvider;
     }
 
     public static String getImageBaseUrl() {
         return getPreferenceManager().getImageBaseUrl();
+    }
+
+    public static ConfigPreferenceManager getPreferenceManager() {
+        return getInstance().mPreferenceManager;
+    }
+
+    public boolean isStrictModeEnabled() {
+        return mIsStrictModeEnabled;
+    }
+
+    public static void setStrictModeEnabled(final boolean strictModeEnabled) {
+        getInstance().mIsStrictModeEnabled = strictModeEnabled;
     }
 }
