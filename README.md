@@ -80,7 +80,7 @@ Activity with a Collapsing Layout and a Fragment. Reusing the Movie Details infr
 ![Screenshot_20160518-143746.png](https://bitbucket.org/repo/gBjXLM/images/3351930293-Screenshot_20160518-143746.png)
 
 ## Unit Tests ##
-Several utility classes have been unit tested. Time constraints did not allow for further testing. 
+* Several utility classes have been unit tested. Time constraints did not allow for further testing. 
 
 ## Known Issues ##
 * Collapsing bar layout will not scroll properly in the case of a lot of details. It can be fixed, but time constraints did not allow me to address the issue.
