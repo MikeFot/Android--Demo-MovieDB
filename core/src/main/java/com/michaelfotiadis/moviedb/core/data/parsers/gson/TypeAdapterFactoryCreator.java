@@ -34,6 +34,14 @@ import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainerImpl;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesImpl;
+import com.michaelfotiadis.moviedb.common.models.tv.details.CreatedBy;
+import com.michaelfotiadis.moviedb.common.models.tv.details.CreatedByImpl;
+import com.michaelfotiadis.moviedb.common.models.tv.details.Network;
+import com.michaelfotiadis.moviedb.common.models.tv.details.NetworkImpl;
+import com.michaelfotiadis.moviedb.common.models.tv.details.Season;
+import com.michaelfotiadis.moviedb.common.models.tv.details.SeasonImpl;
+import com.michaelfotiadis.moviedb.common.models.tv.details.TvSeriesDetails;
+import com.michaelfotiadis.moviedb.common.models.tv.details.TvSeriesDetailsImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -66,6 +74,10 @@ import java.util.Set;
         adapters.add(create(ProductionCountry.class, ProductionCountryImpl.class));
         adapters.add(create(SpokenLanguage.class, SpokenLanguageImpl.class));
         adapters.add(create(BelongsToCollection.class, BelongsToCollectionImpl.class));
+        adapters.add(create(CreatedBy.class, CreatedByImpl.class));
+        adapters.add(create(Network.class, NetworkImpl.class));
+        adapters.add(create(Season.class, SeasonImpl.class));
+        adapters.add(create(TvSeriesDetails.class, TvSeriesDetailsImpl.class));
 
     }
 

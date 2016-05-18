@@ -7,6 +7,7 @@ import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
 import com.michaelfotiadis.moviedb.common.models.movies.details.MovieDetails;
 import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
+import com.michaelfotiadis.moviedb.common.models.tv.details.TvSeriesDetails;
 import com.michaelfotiadis.moviedb.common.responses.CommonCallback;
 import com.michaelfotiadis.moviedb.common.responses.CommonDeliverable;
 import com.michaelfotiadis.moviedb.core.data.loader.utils.LoaderUtils;
@@ -71,6 +72,34 @@ public class LoaderNetwork {
 
                         final ValidationResult validationResult = new ValidatorProcessorImpl()
                                 .getValidator(MovieDetails.class)
+                                .validate(result);
+                        if (validationResult.isValid()) {
+                            masterCallback.onSuccess(CommonDeliverable.from(result));
+                        } else {
+                            masterCallback.onFailure(validationResult.getError());
+                        }
+
+                    }
+
+                    @Override
+                    public void failure(final RetrofitError error) {
+                        masterCallback.onFailure(LoaderUtils.getErrorFromRetrofit(error));
+                    }
+                });
+
+    }
+
+    protected void getSeriesById(final String id,
+                                 final CommonCallback<TvSeriesDetails> masterCallback) {
+
+        mRequestForwarder.forwardGetSeriesById(
+                id,
+                new Callback<TvSeriesDetails>() {
+                    @Override
+                    public void success(final TvSeriesDetails result, final Response response) {
+
+                        final ValidationResult validationResult = new ValidatorProcessorImpl()
+                                .getValidator(TvSeriesDetails.class)
                                 .validate(result);
                         if (validationResult.isValid()) {
                             masterCallback.onSuccess(CommonDeliverable.from(result));
