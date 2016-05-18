@@ -19,4 +19,5 @@ public interface IntentDispatcher {
 
     IntentFactory getIntentFactory();
 
+    void openTvSeriesDetailsActivity(View source, String id);
 }

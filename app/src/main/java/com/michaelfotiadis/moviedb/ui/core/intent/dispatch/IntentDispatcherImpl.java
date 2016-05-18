@@ -68,4 +68,14 @@ public class IntentDispatcherImpl implements IntentDispatcher {
         return mIntentFactory;
     }
 
+    @Override
+    public void openTvSeriesDetailsActivity(final View source, final String id) {
+        AppLog.d(String.format("Starting open tv series details activity for id %s", id));
+        final Intent intent = mIntentFactory.getTvSeriesDetailsIntent(id);
+
+        mDispatcher.withView(source)
+                .withAnimation(ActivityAnimation.SCALE_UP_FROM_VIEW)
+                .dispatch(intent);
+    }
+
 }

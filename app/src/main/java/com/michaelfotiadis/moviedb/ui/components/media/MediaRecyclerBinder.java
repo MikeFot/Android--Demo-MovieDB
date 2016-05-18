@@ -48,6 +48,9 @@ public class MediaRecyclerBinder extends BaseRecyclerViewBinder<MediaRecyclerVie
                     if (item.getType().equals(UiMediaType.MOVIE)) {
 
                         getIntentDispatcher().openMovieDetailsActivity(holder.poster, String.valueOf(item.getId()));
+                    } else if (item.getType().equals(UiMediaType.TV_SERIES)) {
+                        getIntentDispatcher().openTvSeriesDetailsActivity(holder.poster, String.valueOf(item.getId()));
+
                     } else {
                         AppLog.w("Not implemented yet");
                     }

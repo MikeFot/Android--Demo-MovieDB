@@ -13,6 +13,7 @@ import com.michaelfotiadis.moviedb.common.models.people.PeopleContainer;
 import com.michaelfotiadis.moviedb.common.models.people.Person;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
 import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
+import com.michaelfotiadis.moviedb.common.models.tv.details.TvSeriesDetails;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.ConfigurationValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.GenreContainerValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.GenreValidator;
@@ -24,6 +25,7 @@ import com.michaelfotiadis.moviedb.core.data.validation.validators.MoviesContain
 import com.michaelfotiadis.moviedb.core.data.validation.validators.PeopleContainerValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.PersonValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.TvSeriesContainerValidator;
+import com.michaelfotiadis.moviedb.core.data.validation.validators.TvSeriesDetailsValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.TvSeriesValidator;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.Validator;
 
@@ -54,6 +56,7 @@ public final class ValidatorProcessorImpl implements ValidatorProcessor {
         mValidators.put(Genre.class, new GenreValidator());
         mValidators.put(MovieDetails.class, new MovieDetailsValidator());
         mValidators.put(Configuration.class, new ConfigurationValidator());
+        mValidators.put(TvSeriesDetails.class, new TvSeriesDetailsValidator());
 
     }
 

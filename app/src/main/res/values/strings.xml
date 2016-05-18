@@ -36,6 +36,7 @@
     <string name="poster_aspect_ratio">27:40</string>
     <string name="poster_aspect_horizontal_ratio">40:22.6</string>
     <string name="title_movie_details">Movie Details</string>
+    <string name="title_series_details">Series Details</string>
     <string name="search">Search</string>
     <string name="hint_search">Search...</string>
     <string name="text_out_now">Out now!</string>

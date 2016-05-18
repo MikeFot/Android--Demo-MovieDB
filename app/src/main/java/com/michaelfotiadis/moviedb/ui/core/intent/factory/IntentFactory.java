@@ -10,4 +10,6 @@ public interface IntentFactory {
     Intent getMovieDetailsIntent(String id);
 
     Intent getHomeIntent();
+
+    Intent getTvSeriesDetailsIntent(String id);
 }
