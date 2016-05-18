@@ -51,6 +51,7 @@
                 tools:text="@string/lorem"
                 android:maxLines="6"
                 android:ellipsize="end"
+                android:gravity="fill_horizontal"
                 android:scrollHorizontally="true"
                 android:singleLine="false"
                 android:layout_above="@+id/divider"
