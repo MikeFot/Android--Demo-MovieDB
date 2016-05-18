@@ -32,7 +32,7 @@ The application is using 3 modules:
 ### Components ###
 * All base components are organised in a separate package for reusability.
 * Application class inititalises the **Core module singleton** for access to the Data Provider and **Crasylytics** controller.
-* Activities and Fragments keep a reference to an **Intent Dispatcher** and an **Image Fetcher** (Picasso Singleton) which they provide to their view binders.
+* Activities and Fragments keep a reference to an **Intent Dispatcher** and an **Image Fetcher** (Picasso Singleton) which they provide to their view binders. Image Fetcher can take a placeholder id as a request parameter.
 
 ### Splash Screen ###
 Configuration is being retrieved from the server during the splash screen. Shows a progress bar and a movie quote.
