@@ -3,7 +3,7 @@ package com.michaelfotiadis.moviedb.ui.core.common.viewbinder;
 import android.content.Context;
 import android.view.View;
 
-import com.michaelfotiadis.moviedb.common.models.base.AppModel;
+import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
 import com.michaelfotiadis.moviedb.ui.core.common.viewholder.BaseViewHolder;
 import com.michaelfotiadis.moviedb.ui.core.intent.dispatch.IntentDispatcher;
 import com.michaelfotiadis.moviedb.utils.view.ViewUtils;

@@ -1,6 +1,6 @@
 package com.michaelfotiadis.moviedb.core.data.validation;
 
-import com.michaelfotiadis.moviedb.common.models.base.AppModel;
+import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
 import com.michaelfotiadis.moviedb.core.data.validation.validators.Validator;
 
 /**

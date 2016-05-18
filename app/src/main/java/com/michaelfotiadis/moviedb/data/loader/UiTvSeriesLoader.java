@@ -4,8 +4,8 @@ import android.app.Activity;
 
 import com.michaelfotiadis.moviedb.common.models.genre.GenreContainer;
 import com.michaelfotiadis.moviedb.common.models.genre.GenreType;
-import com.michaelfotiadis.moviedb.common.models.movies.Movie;
-import com.michaelfotiadis.moviedb.common.models.movies.MoviesContainer;
+import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
+import com.michaelfotiadis.moviedb.common.models.tv.TvSeriesContainer;
 import com.michaelfotiadis.moviedb.common.responses.CommonCallback;
 import com.michaelfotiadis.moviedb.common.responses.CommonDeliverable;
 import com.michaelfotiadis.moviedb.common.responses.CommonError;
@@ -20,11 +20,11 @@ import java.util.Locale;
 /**
  *
  */
-public class UiMovieLoader extends DataFeedLoaderAbstract<UiMedia> {
+public class UiTvSeriesLoader extends DataFeedLoaderAbstract<UiMedia> {
 
-    final UiMediaFactory<Movie> mFactory;
+    final UiMediaFactory<TvSeries> mFactory;
 
-    public UiMovieLoader(final Activity activity) {
+    public UiTvSeriesLoader(final Activity activity) {
         super(activity);
         mFactory = new UiMediaFactory<>();
     }
@@ -45,16 +45,16 @@ public class UiMovieLoader extends DataFeedLoaderAbstract<UiMedia> {
     }
 
     private void loadMovies() {
-        DemoCore.getDataProvider().getPopularMovies(new CommonCallback<MoviesContainer>() {
+        DemoCore.getDataProvider().getPopularSeries(new CommonCallback<TvSeriesContainer>() {
             @Override
             public void onFailure(final CommonError error) {
                 notifyError(UiDataLoadErrorFactory.createError(getActivity(), error));
             }
 
             @Override
-            public void onSuccess(final CommonDeliverable<MoviesContainer> deliverable) {
-                AppLog.d(String.format(Locale.UK, "Loader: got %d movies", deliverable.getContent().getMovies().size()));
-                mFactory.setMedia(deliverable.getContent().getMovies());
+            public void onSuccess(final CommonDeliverable<TvSeriesContainer> deliverable) {
+                AppLog.d(String.format(Locale.UK, "Loader: got %d series", deliverable.getContent().getSeries().size()));
+                mFactory.setMedia(deliverable.getContent().getSeries());
                 loadGenres();
             }
         });

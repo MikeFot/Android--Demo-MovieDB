@@ -1,9 +1,10 @@
 package com.michaelfotiadis.moviedb.data.factory;
 
+import com.michaelfotiadis.moviedb.common.models.base.Media;
 import com.michaelfotiadis.moviedb.common.models.genre.Genre;
-import com.michaelfotiadis.moviedb.common.models.movies.Movie;
 import com.michaelfotiadis.moviedb.core.DemoCore;
-import com.michaelfotiadis.moviedb.data.model.UiMovie;
+import com.michaelfotiadis.moviedb.data.model.UiMedia;
+import com.michaelfotiadis.moviedb.data.model.UiMediaImpl;
 import com.michaelfotiadis.moviedb.utils.AppLog;
 import com.michaelfotiadis.moviedb.utils.date.DateUtils;
 
@@ -13,29 +14,29 @@ import java.util.List;
 /**
  *
  */
-public class UiMovieFactory {
+public class UiMediaFactory<T extends Media> {
 
-    final List<Movie> mMovies = new ArrayList<>();
+    final List<T> mMediaList = new ArrayList<>();
     final List<Genre> mGenres = new ArrayList<>();
-    final List<UiMovie> mUiMovies = new ArrayList<>();
+    final List<UiMedia> mUiMedia = new ArrayList<>();
 
-    public List<UiMovie> create() {
-        mUiMovies.clear();
+    public List<UiMedia> create() {
+        mUiMedia.clear();
 
-        for (final Movie movie : mMovies) {
-            mUiMovies.add(UiMovie.newBuilder()
-                    .withId(movie.getId())
-                    .withDescription(movie.getOverview())
-                    .withTitle(movie.getTitle())
-                    .withYear(DateUtils.getReleaseYear(movie.getReleaseDate()))
-                    .withGenres(buildGenreText(movie.getGenreIds(), mGenres))
-                    .withPosterUrl(buildUrl(movie.getPosterPath()))
-                    .withRating(String.valueOf(movie.getVoteAverage()))
+        for (final T media : mMediaList) {
+            mUiMedia.add(UiMediaImpl.newBuilder()
+                    .withId(media.getId())
+                    .withDescription(media.getOverview())
+                    .withTitle(media.getTitle())
+                    .withYear(DateUtils.getReleaseYear(media.getReleaseDate()))
+                    .withGenres(buildGenreText(media.getGenreIds(), mGenres))
+                    .withPosterUrl(buildUrl(media.getPosterPath()))
+                    .withRating(String.valueOf(media.getVoteAverage()))
                     .build());
 
         }
 
-        return mUiMovies;
+        return mUiMedia;
     }
 
     private String buildGenreText(final List<Integer> genreIds, final List<Genre> genres) {
@@ -81,8 +82,8 @@ public class UiMovieFactory {
         mGenres.addAll(genres);
     }
 
-    public void setMovies(final List<Movie> movies) {
-        mMovies.clear();
-        mMovies.addAll(movies);
+    public void setMedia(final List<T> mediaList) {
+        mMediaList.clear();
+        mMediaList.addAll(mediaList);
     }
 }

@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.michaelfotiadis.moviedb.R;
-import com.michaelfotiadis.moviedb.common.models.tv.TvSeries;
 import com.michaelfotiadis.moviedb.data.error.UiDataLoadError;
 import com.michaelfotiadis.moviedb.data.loader.DataFeedLoaderCallback;
-import com.michaelfotiadis.moviedb.data.loader.TvSeriesLoader;
+import com.michaelfotiadis.moviedb.data.loader.UiTvSeriesLoader;
+import com.michaelfotiadis.moviedb.data.model.UiMedia;
+import com.michaelfotiadis.moviedb.ui.components.media.MediaRecyclerViewAdapter;
 import com.michaelfotiadis.moviedb.ui.core.common.error.errorpage.QuoteOnClickListenerWrapper;
 import com.michaelfotiadis.moviedb.ui.core.common.fragment.BaseFragment;
 import com.michaelfotiadis.moviedb.ui.core.common.recyclerview.manager.RecyclerManager;
@@ -21,6 +22,7 @@ import com.michaelfotiadis.moviedb.ui.core.common.viewmanagement.UiStateKeeper;
 import com.michaelfotiadis.moviedb.utils.AppLog;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +34,7 @@ public class TvSeriesFeedFragment extends BaseFragment {
 
     @Bind(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
-    private RecyclerManager<TvSeries> mRecyclerManager;
+    private RecyclerManager<UiMedia> mRecyclerManager;
 
     public static TvSeriesFeedFragment newInstance() {
         return new TvSeriesFeedFragment();
@@ -58,7 +60,7 @@ public class TvSeriesFeedFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mRecyclerManager = new RecyclerManager.Builder<>(
-                new TvRecyclerViewAdapter(getActivity(), getImageFetcher(), getIntentDispatcher()))
+                new MediaRecyclerViewAdapter(getActivity(), getImageFetcher(), getIntentDispatcher()))
                 .setRecycler(mRecyclerView)
                 .setStateKeeper(uiStateKeeper)
                 .setEmptyMessage(getString(R.string.friendly_error_no_data))
@@ -78,9 +80,10 @@ public class TvSeriesFeedFragment extends BaseFragment {
     }
 
     private void loadData() {
-        final TvSeriesLoader loader = new TvSeriesLoader(getActivity());
 
-        loader.setCallback(new DataFeedLoaderCallback<TvSeries>() {
+        final UiTvSeriesLoader loader = new UiTvSeriesLoader(getActivity());
+
+        loader.setCallback(new DataFeedLoaderCallback<UiMedia>() {
             @Override
             public void onError(final UiDataLoadError error) {
                 AppLog.e(String.format("Error %s", error));
@@ -88,13 +91,13 @@ public class TvSeriesFeedFragment extends BaseFragment {
             }
 
             @Override
-            public void onSuccess(final List<TvSeries> items) {
-                AppLog.d(String.format("Loaded %d movies", items.size()));
+            public void onSuccess(final List<UiMedia> items) {
+                AppLog.d(String.format(Locale.UK, "Loaded %d Ui movies", items.size()));
                 mRecyclerManager.clearError();
                 mRecyclerManager.setItems(items);
             }
         });
-        AppLog.d("Loading Movies");
+        AppLog.d("Loading UiTvSeries");
         loader.loadData();
     }
 

@@ -108,7 +108,7 @@ public class TvSeriesImpl implements TvSeries {
     }
 
     @Override
-    public String getFirstAirDate() {
+    public String getReleaseDate() {
         return firstAirDate;
     }
 
@@ -123,7 +123,7 @@ public class TvSeriesImpl implements TvSeries {
     }
 
     @Override
-    public String getName() {
+    public String getTitle() {
         return name;
     }
 
@@ -133,7 +133,7 @@ public class TvSeriesImpl implements TvSeries {
     }
 
     @Override
-    public String getOriginalName() {
+    public String getOriginalTitle() {
         return originalName;
     }
 

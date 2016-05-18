@@ -1,7 +1,7 @@
 package com.michaelfotiadis.moviedb.common.models.tv;
 
-import com.michaelfotiadis.moviedb.common.models.base.AppModel;
-import com.michaelfotiadis.moviedb.common.models.base.WithLongId;
+import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
+import com.michaelfotiadis.moviedb.common.models.base.app.WithLongId;
 
 import java.util.List;
 

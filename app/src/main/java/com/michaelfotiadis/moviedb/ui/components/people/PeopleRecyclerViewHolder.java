@@ -24,8 +24,6 @@ public final class PeopleRecyclerViewHolder extends BaseRecyclerViewHolder {
     protected RelativeLayout secondMovie;
     @Bind(R.id.movie_3)
     protected RelativeLayout thirdMovie;
-    @Bind(R.id.more_info_button)
-    protected View moreInfoButton;
 
     public PeopleRecyclerViewHolder(final View view) {
         super(view);

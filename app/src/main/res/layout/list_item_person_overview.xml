@@ -32,14 +32,6 @@
                 android:textStyle="bold"
                 tools:text="Johnny Depp"/>
 
-            <TextView
-                android:id="@+id/more_info_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="@string/button_label_more_info"
-                android:textSize="18sp"/>
-
         </RelativeLayout>
 
 

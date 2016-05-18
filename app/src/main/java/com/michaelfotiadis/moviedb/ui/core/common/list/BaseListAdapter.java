@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.michaelfotiadis.moviedb.common.models.base.AppModel;
-import com.michaelfotiadis.moviedb.common.models.base.WithLongId;
+import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
+import com.michaelfotiadis.moviedb.common.models.base.app.WithLongId;
 import com.michaelfotiadis.moviedb.ui.core.common.activity.BaseActivity;
 import com.michaelfotiadis.moviedb.ui.core.common.viewbinder.BaseViewDataBinder;
 import com.michaelfotiadis.moviedb.ui.core.common.viewholder.BaseViewHolder;

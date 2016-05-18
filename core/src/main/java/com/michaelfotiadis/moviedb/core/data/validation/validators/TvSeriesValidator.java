@@ -16,7 +16,7 @@ public class TvSeriesValidator implements Validator<TvSeries> {
             return new ValidationResult(false, "Null TvSeries container");
         } else if (item.getId() == null) {
             return new ValidationResult(false, "Null TvSeries id");
-        } else if (TextUtils.isEmpty(item.getName())) {
+        } else if (TextUtils.isEmpty(item.getTitle())) {
             return new ValidationResult(false, "Empty name in TvSeries");
         } else {
             return new ValidationResult(true);

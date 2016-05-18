@@ -113,6 +113,11 @@ public class MovieImpl implements Movie {
     }
 
     @Override
+    public Boolean getVideo() {
+        return video;
+    }
+
+    @Override
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -155,11 +160,6 @@ public class MovieImpl implements Movie {
     @Override
     public String getTitle() {
         return title;
-    }
-
-    @Override
-    public Boolean getVideo() {
-        return video;
     }
 
     @Override

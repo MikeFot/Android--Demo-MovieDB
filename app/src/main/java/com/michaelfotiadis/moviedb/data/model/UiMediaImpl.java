@@ -2,23 +2,20 @@ package com.michaelfotiadis.moviedb.data.model;
 
 import android.os.Parcel;
 
-import com.michaelfotiadis.moviedb.common.models.base.AppModel;
-import com.michaelfotiadis.moviedb.common.models.base.WithLongId;
-
 /**
  *
  */
-public class UiMovie implements AppModel, WithLongId {
+public class UiMediaImpl implements UiMedia {
 
-    public static final Creator<UiMovie> CREATOR = new Creator<UiMovie>() {
+    public static final Creator<UiMedia> CREATOR = new Creator<UiMedia>() {
         @Override
-        public UiMovie createFromParcel(final Parcel source) {
-            return new UiMovie(source);
+        public UiMedia createFromParcel(final Parcel source) {
+            return new UiMediaImpl(source);
         }
 
         @Override
-        public UiMovie[] newArray(final int size) {
-            return new UiMovie[size];
+        public UiMedia[] newArray(final int size) {
+            return new UiMedia[size];
         }
     };
     private final Long id;
@@ -29,7 +26,7 @@ public class UiMovie implements AppModel, WithLongId {
     private final String description;
     private final String genres;
 
-    private UiMovie(final Builder builder) {
+    private UiMediaImpl(final Builder builder) {
         description = builder.description;
         id = builder.id;
         posterUrl = builder.posterUrl;
@@ -39,7 +36,7 @@ public class UiMovie implements AppModel, WithLongId {
         genres = builder.genres;
     }
 
-    protected UiMovie(final Parcel in) {
+    protected UiMediaImpl(final Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
         this.posterUrl = in.readString();
         this.title = in.readString();
@@ -53,7 +50,7 @@ public class UiMovie implements AppModel, WithLongId {
         return new Builder();
     }
 
-    public static Builder newBuilder(final UiMovie copy) {
+    public static Builder newBuilder(final UiMediaImpl copy) {
         final Builder builder = new Builder();
         builder.description = copy.description;
         builder.id = copy.id;
@@ -65,26 +62,32 @@ public class UiMovie implements AppModel, WithLongId {
         return builder;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public String getGenres() {
         return genres;
     }
 
+    @Override
     public String getPosterUrl() {
         return posterUrl;
     }
 
+    @Override
     public String getRating() {
         return rating;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public String getYear() {
         return year;
     }
@@ -157,8 +160,8 @@ public class UiMovie implements AppModel, WithLongId {
             return this;
         }
 
-        public UiMovie build() {
-            return new UiMovie(this);
+        public UiMedia build() {
+            return new UiMediaImpl(this);
         }
     }
 }

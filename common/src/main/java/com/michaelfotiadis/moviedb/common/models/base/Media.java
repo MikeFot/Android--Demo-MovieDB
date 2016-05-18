@@ -1,19 +1,24 @@
-package com.michaelfotiadis.moviedb.common.models.people;
+package com.michaelfotiadis.moviedb.common.models.base;
 
 import com.michaelfotiadis.moviedb.common.models.base.app.AppModel;
 import com.michaelfotiadis.moviedb.common.models.base.app.WithLongId;
 
+import java.util.List;
+
 /**
  *
  */
-public interface KnownFor extends AppModel, WithLongId {
-    Boolean getAdult();
+public interface Media extends AppModel, WithLongId {
 
     String getBackdropPath();
 
-    String getMediaType();
+    List<Integer> getGenreIds();
+
+    String getOriginalLanguage();
 
     String getOriginalTitle();
+
+    String getOverview();
 
     Float getPopularity();
 

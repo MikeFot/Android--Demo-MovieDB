@@ -1,4 +1,4 @@
-package com.michaelfotiadis.moviedb.common.models.base;
+package com.michaelfotiadis.moviedb.common.models.base.app;
 
 /**
  *
