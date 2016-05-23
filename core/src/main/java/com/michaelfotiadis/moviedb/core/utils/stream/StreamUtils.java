@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 
 public final class StreamUtils {
 
-    private static Charset CHARSET = Charset.forName(CoreConstants.ENCODING_UTF8);
+    private static final Charset CHARSET = Charset.forName(CoreConstants.ENCODING_UTF8);
 
     private StreamUtils() {
         // DO NOT INSTANTIATE

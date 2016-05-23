@@ -1,5 +1,5 @@
 # Movie DB Client Demo for Android #
-Android Material Design application for accessing Movie DB data using a guest account.
+Android Material Design DEMO application for accessing Movie DB data using a guest account.
 
 ## Structure ##
 The application is using 3 modules:
@@ -11,7 +11,7 @@ The application is using 3 modules:
 ## Build ##
 ### Built Types ###
 * **release** for store release
-* **debug** for debugging the application and enabling loggin
+* **debug** for debugging the application and enabling logging
 * all build types automatically generate their APK filename using the current git commit information
 ### Flavours ###
 * **prod** using the production server
@@ -54,17 +54,17 @@ Components use a **StateKeeper** to handle their current state (loading, error, 
 ![Screenshot_20160518-134534.png](https://bitbucket.org/repo/gBjXLM/images/1023503257-Screenshot_20160518-134534.png)
 
 ### Movie Feed Fragment ###
-Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines Movies with Genres through a factory. Uses an AutoFitLayout for genres.
+Recyclerview with Cardviews, extends Media Fragment. Displays wrapper UI object that combines Movies with Genres through a factory. Uses an AutoFitLayout for genres.
 
 ![Screenshot_20160518-134512.png](https://bitbucket.org/repo/gBjXLM/images/4005901145-Screenshot_20160518-134512.png)
 
 ### People Feed Fragment ###
-Recyclerview with cardviews.
+Recyclerview with Cardviews.
 
 ![Screenshot_20160518-134516.png](https://bitbucket.org/repo/gBjXLM/images/1488809604-Screenshot_20160518-134516.png)
 
 ### Tv Series Feed Fragment ###
-Recyclerview with cardviews, extends Media Fragment. Displays wrapper UI object that combines TvSeries with Genres through a factory.
+Recyclerview with Cardviews, extends Media Fragment. Displays wrapper UI object that combines TvSeries with Genres through a factory.
 
 ![Screenshot_20160518-134520.png](https://bitbucket.org/repo/gBjXLM/images/2904125364-Screenshot_20160518-134520.png)
 
