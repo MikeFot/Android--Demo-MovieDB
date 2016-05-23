@@ -13,10 +13,12 @@ The application is using 3 modules:
 * **release** for store release
 * **debug** for debugging the application and enabling logging
 * all build types automatically generate their APK filename using the current git commit information
+
 ### Flavours ###
 * **prod** using the production server
 * **dev** using the debug proxy
 * **mock** using the mock server
+
 ### Data Fetching ###
 * **core** is using Retrofit internally with GSON deserialisation. All app models are represented by interfaces and are paired with their implementations during GSON initialisation.
 * **app** is using an abstract data loader which converts several of the models to UI objects which hide API implementation 
