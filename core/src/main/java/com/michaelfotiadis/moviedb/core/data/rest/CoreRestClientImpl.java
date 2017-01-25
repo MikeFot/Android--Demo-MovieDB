@@ -19,7 +19,6 @@ import java.io.File;
  */
 public final class CoreRestClientImpl implements CoreRestClient {
 
-    private final GenericApiStore mGenericApiStore;
     private CoreApiStore mApiStore;
 
     /**
@@ -30,7 +29,6 @@ public final class CoreRestClientImpl implements CoreRestClient {
     public CoreRestClientImpl(final File cacheDirectory) {
         CoreLog.d("Initialising the Rest Client");
 
-        mGenericApiStore = new GenericApiStore(CoreGson.get());
         final OkHttpClient client = new OkHttpClient();
 
         // initialise the cache directory if the parameter is not null

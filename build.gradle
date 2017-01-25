@@ -1,18 +1,17 @@
 import java.text.SimpleDateFormat
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-ext.buildToolsVersion = "24.0.0-rc3"
+ext.buildToolsVersion = "25.0.1"
 
 ext.minSdkVersion = 16
-ext.compileSdkVersion = 23
-ext.targetSdkVersion = 23
+ext.compileSdkVersion = 25
+ext.targetSdkVersion = 25
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
 

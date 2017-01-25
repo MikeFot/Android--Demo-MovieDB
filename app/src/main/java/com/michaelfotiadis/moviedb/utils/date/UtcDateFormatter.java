@@ -28,15 +28,4 @@ public class UtcDateFormatter extends java.text.SimpleDateFormat {
         super.setTimeZone(TIME_ZONE_UTC);
     }
 
-    /*
-     * This function will throw an UnsupportedOperationException.
-     * You are not be able to change the TimeZone of this object
-      *
-      * (non-Javadoc)
-     * @see java.text.DateFormat#setTimeZone(java.util.TimeZone)
-     */
-    @Override
-    public void setTimeZone(final TimeZone timezone) {
-        throw new UnsupportedOperationException("This SimpleDateFormat can only be in " + TIME_ZONE_STRING);
-    }
 }
